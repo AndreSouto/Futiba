@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    tools:context="andreluis.futiba.LoginActivity">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/imageView"
+        android:src="@drawable/login"
+        android:layout_alignParentEnd="true"
+        android:scaleType="fitXY"/>
+
+    <EditText
+        android:layout_width="250sp"
+        android:layout_height="30sp"
+        android:id="@+id/editTextLogin"
+        android:background="@drawable/edittext"
+        android:layout_marginBottom="201dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="#4DB3AA"
+        android:gravity="center"/>
+
+    <EditText
+        android:layout_width="250sp"
+        android:layout_height="30sp"
+        android:id="@+id/editTextSenha"
+        android:background="@drawable/edittext"
+        android:layout_alignTop="@+id/editTextLogin"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="39dp"
+        android:textStyle="normal"
+        android:textColor="#4DB3AA"
+        android:inputType="textVisiblePassword"
+        android:password="true"
+        android:gravity="center"/>
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/login_button"
+        android:layout_width="200dp"
+        android:layout_height="52dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/editTextSenha"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="43dp" />
+
+</RelativeLayout>
