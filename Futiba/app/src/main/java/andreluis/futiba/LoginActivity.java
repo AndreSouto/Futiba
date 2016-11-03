@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -26,6 +27,21 @@ public class LoginActivity extends AppCompatActivity {
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_login);
 
+
+        FacebookSdk.sdkInitialize(getApplicationContext(), new FacebookSdk.InitializeCallback() {   /*******************/
+            @Override
+            public void onInitialized() {                                                           //Tal funcao garante
+                if(AccessToken.getCurrentAccessToken() == null){                                    //que o usuario permaneca
+                                                                                                    //com login no facebook
+
+                } else {
+                    Toast.makeText(getApplicationContext(), "Logged in", Toast.LENGTH_SHORT).show();
+                    MenuScreen();
+                }
+            }
+        });                                                                                          /******************/
+
+
         callbackManager = CallbackManager.Factory.create();
 
         loginButton = (LoginButton) findViewById(R.id.login_button);
@@ -40,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onCancel() {
-               // Toast.makeText(getApplicationContext(), R.string.cancel_login, Toast.LENGTH_SHORT).show();
+
             }
 
             @Override

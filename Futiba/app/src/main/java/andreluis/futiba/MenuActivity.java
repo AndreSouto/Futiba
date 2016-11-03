@@ -24,7 +24,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                BuscaScreen();
+                BuscarScreen();
 
             }
         });
@@ -34,9 +34,9 @@ public class MenuActivity extends AppCompatActivity {
     }
 
 
-    public void BuscaScreen(){              //Chama a BuscaActivity
+    public void BuscarScreen(){              //Chama a BuscaActivity
 
-        Intent buscaScreen = new Intent(this, BuscaActivity.class);
-        startActivity(buscaScreen);
+        Intent buscarScreen = new Intent(this, BuscarActivity.class);
+        startActivity(buscarScreen);
     }
 }
