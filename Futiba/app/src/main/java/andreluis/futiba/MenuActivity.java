@@ -6,19 +6,41 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.facebook.Profile;
+import com.facebook.login.widget.ProfilePictureView;
+
 public class MenuActivity extends AppCompatActivity {
 
-    //TODO: Inserir foto do facebook ! Criar local REDONDO para foto !
-
-    private Button buscarButton;
+    private Button buscarButton, fotoButton;
+    String userId = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        buscarButton = (Button) findViewById(R.id.button);
 
+        /*******Pega a foto de perfil do usuario***************************/
+
+        userId = Profile.getCurrentProfile().getId();
+        ProfilePictureView profilePictureView;
+        profilePictureView = (ProfilePictureView) findViewById(R.id.image);
+        profilePictureView.setProfileId(userId);
+
+        /******************************************************************/
+
+        fotoButton = (Button) findViewById(R.id.buttonFoto);
+        fotoButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                PerfilScreen();
+
+            }
+        });
+
+        buscarButton = (Button) findViewById(R.id.button);
         buscarButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -38,5 +60,10 @@ public class MenuActivity extends AppCompatActivity {
 
         Intent buscarScreen = new Intent(this, BuscarActivity.class);
         startActivity(buscarScreen);
+    }
+    public void PerfilScreen(){              //Chama a BuscaActivity
+
+        Intent perfilScreen = new Intent(this, PerfilActivity.class);
+        startActivity(perfilScreen);
     }
 }
