@@ -30,11 +30,12 @@ public class LoginActivity extends AppCompatActivity {
 
         FacebookSdk.sdkInitialize(getApplicationContext(), new FacebookSdk.InitializeCallback() {   /*******************/
             @Override
-            public void onInitialized() {              //Tal funcao garante
+            public void onInitialized() {                                                           //Tal funcao garante
                 if(AccessToken.getCurrentAccessToken() == null){                                    //que o usuario permaneca
                                                                                                     //com login no facebook
 
                 } else {
+
                     Toast.makeText(getApplicationContext(), "Logged in", Toast.LENGTH_SHORT).show();
                     MenuScreen();
 
@@ -49,7 +50,8 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setReadPermissions(Arrays.asList("email"));
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
-            public void onSuccess(LoginResult loginResult) {
+            public void onSuccess(LoginResult loginResult){
+                
                 MenuScreen();
             }
 
