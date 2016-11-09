@@ -31,14 +31,24 @@
         android:textStyle="normal"
         android:textColor="#4DB3AA"
         android:inputType="textVisiblePassword"
-        android:password="true" />
+        android:password="true"
+        android:gravity="center" />
 
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/fb_btn"
-        android:layout_width="40dp"
-        android:layout_height="100dp"
+    <FrameLayout
+        android:layout_width="200dp"
+        android:layout_height="50dp"
         android:layout_marginTop="455dp"
-        android:layout_marginLeft="240dp"
-        android:background="#00ffffff" />
+        android:layout_marginLeft="97dp"
+        android:background="#f89d03">
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/fb_btn"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            />
+
+
+    </FrameLayout>
+
 
 </RelativeLayout>
