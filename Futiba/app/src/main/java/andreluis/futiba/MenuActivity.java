@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.facebook.Profile;
@@ -18,7 +17,7 @@ import java.util.ArrayList;
 public class MenuActivity extends Activity {
 
     private Button buscarButton, fotoButton;
-    private ImageButton agendaButton, descobertasButton,peladasButton;
+    private Button agendaButton, descobertasButton,peladasButton, configButton;
     String userId;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
@@ -64,13 +63,14 @@ public class MenuActivity extends Activity {
             userId = Profile.getCurrentProfile().getId();
             ProfilePictureView profilePictureView;
             profilePictureView = (ProfilePictureView) findViewById(R.id.image);
-            profilePictureView.setProfileId(userId);
+            if(userId != null) {
+                profilePictureView.setProfileId(userId);
+            }
         }
-
         /******************************************************************/
 
 
-        agendaButton = (ImageButton) findViewById(R.id.imageAvisos);
+        agendaButton = (Button) findViewById(R.id.Avisos);
         agendaButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -109,7 +109,7 @@ public class MenuActivity extends Activity {
         });
 
 
-        descobertasButton = (ImageButton) findViewById(R.id.imageDescobertas);
+        descobertasButton = (Button) findViewById(R.id.Descobertas);
         descobertasButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -148,7 +148,7 @@ public class MenuActivity extends Activity {
         });
 
 
-        peladasButton = (ImageButton) findViewById(R.id.imageAgenda);
+        peladasButton = (Button) findViewById(R.id.Agenda);
         peladasButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -187,6 +187,18 @@ public class MenuActivity extends Activity {
         });
 
 
+        configButton = (Button) findViewById(R.id.imageView4);
+        configButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                EditarPerfilScreen();
+
+            }
+        });
+
+
         fotoButton = (Button) findViewById(R.id.buttonFoto);
         fotoButton.setOnClickListener(new View.OnClickListener() {
 
@@ -219,10 +231,16 @@ public class MenuActivity extends Activity {
         startActivity(buscarScreen);
     }
 
-    public void PerfilScreen() {              //Chama a BuscaActivity
+    public void PerfilScreen() {              //Chama a PerfilActivity
 
         Intent perfilScreen = new Intent(this, PerfilActivity.class);
         startActivity(perfilScreen);
+    }
+
+    public void EditarPerfilScreen() {              //Chama a EditarPerfilActivity
+
+        Intent editarPerfilScreen = new Intent(this, EditarPerfilActivity.class);
+        startActivity(editarPerfilScreen);
     }
 
 

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:background="@drawable/futiba0635"
+    tools:context="andreluis.futiba.CriarQuadraActivity">
+
+
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="20dp"
+        android:background="#ffffff"
+        android:id="@+id/ruim"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="365dp"
+        android:clickable="true"
+        android:text="ruim"
+        android:textColor="#9A9A9A"
+        android:elevation="0dp" />
+
+    <Button
+        android:layout_width="70dp"
+        android:layout_height="20dp"
+        android:background="#ffffff"
+        android:id="@+id/regular"
+        android:layout_marginLeft="137dp"
+        android:layout_marginTop="365dp"
+        android:elevation="0dp"
+        android:clickable="true"
+        android:textColor="#9a9a9a"
+        android:text="regular" />
+
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="20dp"
+        android:id="@+id/bom"
+        android:background="#ffffff"
+        android:layout_marginLeft="245dp"
+        android:layout_marginTop="365dp"
+        android:elevation="0dp"
+        android:clickable="true"
+        android:text="bom"
+        android:textColor="#9A9A9A" />
+
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="20dp"
+        android:background="#ffffff"
+        android:id="@+id/society"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="437dp"
+        android:clickable="true"
+        android:text="society"
+        android:textColor="#9A9A9A"
+        android:elevation="0dp" />
+
+    <Button
+        android:layout_width="70dp"
+        android:layout_height="20dp"
+        android:background="#ffffff"
+        android:id="@+id/futsal"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="437dp"
+        android:elevation="0dp"
+        android:clickable="true"
+        android:textColor="#9a9a9a"
+        android:text="futsal" />
+
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="20dp"
+        android:id="@+id/grama"
+        android:background="#ffffff"
+        android:layout_marginLeft="245dp"
+        android:layout_marginTop="437dp"
+        android:elevation="0dp"
+        android:clickable="true"
+        android:text="grama"
+        android:textColor="#9A9A9A" />
+
+    <Button
+        android:layout_width="155dp"
+        android:layout_height="65dp"
+        android:background="#00ffffff"
+        android:layout_marginTop="477dp"
+        android:id="@+id/criar"
+        android:layout_marginLeft="117dp"/>
+
+</RelativeLayout>

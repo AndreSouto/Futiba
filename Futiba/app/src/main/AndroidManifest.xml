@@ -58,7 +58,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".PerfilActivity" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".EditarPerfilActivity" />
+        <activity android:name=".CriarQuadraActivity" />
+        <activity android:name=".CriarPeladaActivity"></activity>
     </application>
 
 </manifest>

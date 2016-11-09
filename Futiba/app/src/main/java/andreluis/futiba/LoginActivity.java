@@ -3,6 +3,7 @@ package andreluis.futiba;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -10,6 +11,8 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.Profile;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
@@ -28,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
 
-        FacebookSdk.sdkInitialize(getApplicationContext(), new FacebookSdk.InitializeCallback() {   /*******************/
+        FacebookSdk.sdkInitialize(getApplicationContext(), new FacebookSdk.InitializeCallback() {
             @Override
             public void onInitialized() {                                                           //Tal funcao garante
                 if(AccessToken.getCurrentAccessToken() == null){                                    //que o usuario permaneca
@@ -43,28 +46,16 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        callbackManager = CallbackManager.Factory.create();
-
-
-        loginButton = (LoginButton) findViewById(R.id.login_button);
-        loginButton.setReadPermissions(Arrays.asList("email"));
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+        loginButton = (LoginButton) findViewById(R.id.fb_btn);
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onSuccess(LoginResult loginResult){
-                
-                MenuScreen();
+            public void onClick(View v) {
+
+                onfbClick();
             }
 
-            @Override
-            public void onCancel() {
-
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Toast.makeText(getApplicationContext(), "Login ou senha incorretos", Toast.LENGTH_SHORT).show();
-            }
         });
+
     }
 
     public void MenuScreen(){
@@ -79,6 +70,38 @@ public class LoginActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
+
+
+    private void onfbClick() {
+        callbackManager = CallbackManager.Factory.create();
+
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email","public_profile"));
+        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                // App code
+                AccessToken accessToken = loginResult.getAccessToken();
+                Profile profile = Profile.getCurrentProfile();
+
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "first_name,last_name");
+                //request.setParameters(parameters);
+                //request.executeAsync();
+                MenuScreen();
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+
+            }
+        });
+    }
+
 }
 
 
