@@ -2,6 +2,9 @@ package andreluis.futiba;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.EditText;
+import android.widget.Switch;
+import android.widget.ToggleButton;
 
 import com.facebook.Profile;
 import com.facebook.login.widget.ProfilePictureView;
@@ -10,7 +13,7 @@ public class PerfilActivity extends AppCompatActivity {
 
     private int genteBoaMedals;
     private int bomdBolaMedals;
-    private boolean jogaGol;
+    private static boolean jogaGol;
     private String filosofia;
     private String userId;
 
@@ -32,6 +35,12 @@ public class PerfilActivity extends AppCompatActivity {
         }
 
         /******************************************************************/
+
+        Switch jogaGolSwitch = (Switch) findViewById(R.id.jogaGolSwitch);
+        ToggleButton butaoPosicao = (ToggleButton) findViewById(R.id.posicao);
+        EditText fraseFilosofica = (EditText) findViewById (R.id.filosofia);
+
+
     }
 
     //setters:
@@ -39,7 +48,7 @@ public class PerfilActivity extends AppCompatActivity {
         filosofia = frase;
     }
 
-    public void setJogaGol(boolean state) {
+    public static void setJogaGol(boolean state) {
         jogaGol = state;
     }
 
@@ -67,5 +76,7 @@ public class PerfilActivity extends AppCompatActivity {
 
     public String getFilosofia() {
         return filosofia;
+    }
+
     }
 }

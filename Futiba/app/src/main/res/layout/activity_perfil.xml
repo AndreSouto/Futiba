@@ -42,32 +42,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="12dp" />
 
-    <ToggleButton
-        android:text="ToggleButton"
-        android:layout_width="wrap_content"
-        android:layout_height="32dp"
-        android:layout_marginBottom="17dp"
-        android:id="@+id/jogaGolButao"
-        android:textOn="Sim"
-        android:textOff="Não"
-        android:textColor="#4db6ac"
-        android:background="#ffffff"
-        android:layout_above="@+id/filosofiaFixo"
-        android:layout_centerHorizontal="true" />
-
-    <ToggleButton
-        android:text="ToggleButton"
-        android:layout_width="wrap_content"
-        android:layout_height="32dp"
-        android:layout_marginBottom="10dp"
-        android:id="@+id/posicao"
-        android:textOn="Ataque"
-        android:textOff="Defesa"
-        android:textColor="#4db6ac"
-        android:background="#ffffff"
-        android:layout_above="@+id/jogaGol"
-        android:layout_centerHorizontal="true" />
-
     <TextView
         android:text="Filosofia de Vida"
         android:layout_width="wrap_content"
@@ -155,5 +129,32 @@
         android:layout_alignBottom="@+id/bomdBola"
         android:layout_alignStart="@+id/medalha1"
         android:layout_marginStart="14dp" />
+
+    <ToggleButton
+        android:text="ToggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_marginBottom="17dp"
+        android:id="@+id/jogaGolButao"
+        android:textOn="Sim"
+        android:textOff="Não"
+        android:clickable="false"
+        android:textColor="#4db6ac"
+        android:background="#ffffff"
+        android:layout_above="@+id/filosofiaFixo"
+        android:layout_centerHorizontal="true" />
+
+    <ToggleButton
+        android:text="ToggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:id="@+id/posicao"
+        android:textOn="Ataque"
+        android:textOff="Defesa"
+        android:clickable="false"
+        android:textColor="#4db6ac"
+        android:background="#ffffff"
+        android:layout_above="@+id/jogaGol"
+        android:layout_alignStart="@+id/jogaGolButao" />
 
 </RelativeLayout>

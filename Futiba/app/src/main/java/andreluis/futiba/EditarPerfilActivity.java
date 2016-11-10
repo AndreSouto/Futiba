@@ -2,6 +2,13 @@ package andreluis.futiba;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.Switch;
+import android.widget.ToggleButton;
+
+import static andreluis.futiba.PerfilActivity.*;
 
 public class EditarPerfilActivity extends AppCompatActivity {
 
@@ -27,5 +34,36 @@ public class EditarPerfilActivity extends AppCompatActivity {
 
         /******************************************************************/
 
+        PerfilActivity pf = new PerfilActivity();
+
+        Switch jogaGolSwitch = (Switch) findViewById(R.id.jogaGolSwitch);
+        ToggleButton butaoPosicao = (ToggleButton) findViewById(R.id.posicao);
+        EditText fraseFilosofica = (EditText) findViewById (R.id.filosofia);
+
+
+        pf.setFilosofia(fraseFilosofica.getEditableText().toString());
+
+        jogaGolSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pf.setJogaGol(jogaGolSwitch.isChecked());
+            }
+        });
+
+        butaoPosicao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pf.setJogaGol();
+            }
+        });
+
+
+
     }
+
+   // public void jogaGolSwitchChange(Switch jogaGolSwitch) {
+   //     PerfilActivity.setJogaGol(jogaGolSwitch.isChecked());
+   // }
+
+
 }
