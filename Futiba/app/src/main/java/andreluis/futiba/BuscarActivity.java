@@ -43,6 +43,15 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
 
 
         i_pesquisa = (ImageButton)findViewById(R.id.imageButton3);
+        i_pesquisa.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+
+            }
+        });
+
         i_filtro = (ImageButton)findViewById(R.id.imageButton);
         i_lista = (ImageButton)findViewById(R.id.imageButton2);
         i_pelada_quadra = (ImageView)findViewById(R.id.imageView);

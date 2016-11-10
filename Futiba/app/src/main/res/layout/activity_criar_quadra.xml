@@ -10,6 +10,18 @@
     android:background="@drawable/futiba0635"
     tools:context="andreluis.futiba.CriarQuadraActivity">
 
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginLeft="22dp"
+        android:background="#ffffff"
+        android:hint="NOME DA QUADRA"
+        android:gravity="left|bottom"
+        android:textColor="#E65302"
+        android:textStyle="bold"
+        android:inputType="textCapCharacters" />
+
 
     <Button
         android:layout_width="60dp"
