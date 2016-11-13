@@ -12,6 +12,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -21,21 +23,39 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
     private Button homeButton, peladaButton, quadraButton, addPeladaButton;
     private ImageButton i_pesquisa, i_filtro, i_lista;
     private ImageView i_pelada_quadra;
+    private int amarelo = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buscar);
+
+
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        final BitmapDescriptor icon = BitmapDescriptorFactory.
+                                        fromResource(R.drawable.footballfield); //Imagem que marca as quadras
+
+
 
         i_pesquisa = (ImageButton)findViewById(R.id.imageButton3);
+        i_pesquisa.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+
+            }
+        });
+
         i_filtro = (ImageButton)findViewById(R.id.imageButton);
         i_lista = (ImageButton)findViewById(R.id.imageButton2);
         i_pelada_quadra = (ImageView)findViewById(R.id.imageView);
+
 
 
         peladaButton = (Button)findViewById(R.id.buttonPeladas);
@@ -44,13 +64,17 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
             @Override
             public void onClick(View view) {
 
+                mMap.clear(); //Limpa o mapa
+
                 i_pesquisa.setImageResource(R.drawable.pesquisapeladas);
                 i_filtro.setImageResource(R.drawable.filtropeladas);
                 i_lista.setImageResource(R.drawable.listapeladas);
                 i_pelada_quadra.setImageResource(R.drawable.addpelada_1);
+                amarelo = 1;
 
             }
         });
+
 
         quadraButton = (Button)findViewById(R.id.buttonQuadras);
         quadraButton.setOnClickListener(new View.OnClickListener() {        //Icones de activity_buscar se tornam vermelhos
@@ -58,15 +82,59 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
             @Override
             public void onClick(View view) {
 
+                mMap.clear(); //Limpa o mapa
+
                 i_pesquisa.setImageResource(R.drawable.pesquisav);
                 i_filtro.setImageResource(R.drawable.filtrov);
                 i_lista.setImageResource(R.drawable.listav);
                 i_pelada_quadra.setImageResource(R.drawable.addquadra1);
+                amarelo = 0;
+
+
+             /******************Adicionando marcacoes de quadra default****************************/
+
+                LatLng q1 = new LatLng(-15.75562, -47.8910);
+                LatLng q2 = new LatLng(-15.756068, -47.889109);
+                LatLng q3 = new LatLng(-15.756146, -47.887583);
+                LatLng q4 = new LatLng(-15.759510, -47.889877);
+                LatLng q5 = new LatLng(-15.762312, -47.881520);
+
+
+                mMap.addMarker(new MarkerOptions().position(q1)
+                        .icon(icon));
+                mMap.addMarker(new MarkerOptions().position(q2)
+                        .icon(icon));
+                mMap.addMarker(new MarkerOptions().position(q3)
+                        .icon(icon));
+                mMap.addMarker(new MarkerOptions().position(q4)
+                        .icon(icon));
+                mMap.addMarker(new MarkerOptions().position(q5)
+                        .icon(icon));
+
+             /*************************************************************************************/
+
 
             }
         });
 
+
         addPeladaButton = (Button)findViewById(R.id.buttonAddPelada);
+        addPeladaButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                if(amarelo == 0){
+                    CriarQuadraScreen();
+
+                }
+                else if(amarelo == 1){
+                    CriarPeladaScreen();
+
+                }
+
+            }
+        });
 
 
 
@@ -98,13 +166,29 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap = googleMap;
+        mMap.setMyLocationEnabled(true);
+
+        // Movendo a camera para posicao default no mapa
+        LatLng Brasilia = new LatLng(-15.794028, -47.882536);
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(Brasilia));
     }
+
+    
+    public void CriarQuadraScreen(){
+
+        Intent cqs = new Intent(this, CriarQuadraActivity.class);
+        startActivity(cqs);
+    }
+
+    public void CriarPeladaScreen(){
+
+        Intent cps = new Intent(this, CriarPeladaActivity.class);
+        startActivity(cps);
+    }
+
 }

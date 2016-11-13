@@ -12,7 +12,7 @@ public class PerfilActivity extends AppCompatActivity {
     private int bomdBolaMedals;
     private boolean jogaGol;
     private String filosofia;
-    private String userId = null;
+    private String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,10 +21,15 @@ public class PerfilActivity extends AppCompatActivity {
 
         /*******Pega a foto de perfil do usuario***************************/
 
-        userId = Profile.getCurrentProfile().getId();
-        ProfilePictureView profilePictureView;
-        profilePictureView = (ProfilePictureView) findViewById(R.id.image);
-        profilePictureView.setProfileId(userId);
+        Profile profile = Profile.getCurrentProfile();
+        if (profile != null) {
+            userId = Profile.getCurrentProfile().getId();
+            ProfilePictureView profilePictureView;
+            profilePictureView = (ProfilePictureView) findViewById(R.id.image);
+            if(userId != null) {
+                profilePictureView.setProfileId(userId);
+            }
+        }
 
         /******************************************************************/
     }

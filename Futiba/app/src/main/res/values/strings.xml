@@ -2,4 +2,22 @@
     <string name="app_name">Futiba</string>
     <string name="facebook_app_id">327290910966592</string>
     <string name="title_activity_buscar">Map</string>
+    <string-array name="nav_drawer_items">
+        <item>Home</item>
+        <item>Cardápio</item>
+        <item>Notícias</item>
+        <item>Eventos</item>
+        <item>Locais</item>
+        <item>Anúncios</item>
+    </string-array>
+
+    <array name="nav_drawer_icons">
+        <item>@drawable/agenda</item>
+        <item>@drawable/agenda</item>
+        <item>@drawable/agenda</item>
+        <item>@drawable/agenda</item>
+        <item>@drawable/agenda</item>
+        <item>@drawable/agenda</item>
+    </array>
+
 </resources>

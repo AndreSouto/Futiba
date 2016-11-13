@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:background="@drawable/futiba0515"
+    tools:context="andreluis.futiba.CriarPeladaActivity">
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="135dp"
+        android:layout_marginLeft="20dp"
+        android:gravity="left|bottom"
+        android:inputType="textCapCharacters"
+        android:textStyle="bold"
+        android:textColor="#FFA103"
+        android:singleLine="false"
+        android:editable="true"
+        android:elegantTextHeight="false"
+        android:id="@+id/edittext"
+        android:background="#ffffffff"
+        android:hint="NOME DA PELADA" />
+
+    <Button
+        android:layout_width="155dp"
+        android:layout_height="65dp"
+        android:layout_marginBottom="41dp"
+        android:background="#00ffffff"
+        android:layout_marginTop="455dp"
+        android:id="@+id/criar"
+        android:layout_marginLeft="117dp"/>
+
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="20dp"
+        android:background="#ffffff"
+        android:id="@+id/zoeira"
+        android:layout_marginLeft="67dp"
+        android:layout_marginTop="260dp"
+        android:clickable="true"
+        android:foreground="#00fc0707"
+        android:text="zoeira"
+        android:textColor="#9A9A9A"
+        android:elevation="0dp" />
+
+    <Button
+        android:layout_width="65dp"
+        android:layout_height="20dp"
+        android:background="#ffffff"
+        android:id="@+id/casual"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="260dp"
+        android:elevation="0dp"
+        android:clickable="true"
+        android:textColor="#9a9a9a"
+        android:text="casual" />
+
+    <Button
+        android:layout_width="110dp"
+        android:layout_height="20dp"
+        android:id="@+id/competitivo"
+        android:background="#ffffff"
+        android:layout_marginLeft="215dp"
+        android:layout_marginTop="260dp"
+        android:elevation="0dp"
+        android:clickable="true"
+        android:text="competitivo"
+        android:textColor="#9A9A9A"
+        android:singleLine="false" />
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:text=""
+        android:id="@+id/cameraButton"
+        android:background="#00ffffff"
+        android:layout_marginTop="90dp"
+        android:layout_marginLeft="10dp"/>
+
+    <ImageView
+        android:layout_width="500dp"
+        android:layout_height="125dp"
+        android:id="@+id/fotoTirada"/>
+
+    <EditText
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:layout_marginLeft="190dp"
+        android:layout_marginTop="293dp"
+        android:background="#ffffffff"
+        android:textColor="#9A9A9A"
+        android:hint="00,00" />
+
+    <EditText
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:inputType="time"
+        android:ems="10"
+        android:id="@+id/editText2"
+        android:layout_marginLeft="169dp"
+        android:layout_marginTop="332dp"
+        android:background="#ffffffff"
+        android:textColor="#9A9A9A"
+        android:hint="00:00" />
+
+    <EditText
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:inputType="time"
+        android:ems="10"
+        android:id="@+id/editText3"
+        android:layout_marginLeft="95dp"
+        android:layout_marginTop="335dp"
+        android:background="#ffffffff"
+        android:textColor="#9A9A9A"
+        android:hint="00:00"
+        android:gravity="left" />
+
+    <EditText
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editText4"
+        android:layout_marginLeft="184dp"
+        android:layout_marginTop="375dp"
+        android:background="#ffffffff"
+        android:textColor="#9A9A9A"
+        android:hint="00"
+        android:gravity="left" />
+
+</RelativeLayout>

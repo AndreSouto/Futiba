@@ -12,11 +12,14 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.Profile;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.parse.LogInCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 import java.util.Arrays;
@@ -41,13 +44,14 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
 
-        FacebookSdk.sdkInitialize(getApplicationContext(), new FacebookSdk.InitializeCallback() {   /*******************/
+        FacebookSdk.sdkInitialize(getApplicationContext(), new FacebookSdk.InitializeCallback() {
             @Override
-            public void onInitialized() {              //Tal funcao garante
+            public void onInitialized() {                                                           //Tal funcao garante
                 if(AccessToken.getCurrentAccessToken() == null){                                    //que o usuario permaneca
                                                                                                     //com login no facebook
 
                 } else {
+
                     Toast.makeText(getApplicationContext(), "Logged in", Toast.LENGTH_SHORT).show();
                     MenuScreen();
 
@@ -55,32 +59,24 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        callbackManager = CallbackManager.Factory.create();
-
-
-        loginButton = (LoginButton) findViewById(R.id.login_button);
-        loginButton.setReadPermissions(Arrays.asList("email"));
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+        loginButton = (LoginButton) findViewById(R.id.fb_btn);
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onSuccess(LoginResult loginResult) {
-                MenuScreen();
+            public void onClick(View v) {
+
+                onfbClick();
             }
 
-            @Override
-            public void onCancel() {
-
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Toast.makeText(getApplicationContext(), "Login ou senha incorretos", Toast.LENGTH_SHORT).show();
-            }
         });
 
         loginNormalButton = (Button) findViewById(R.id.normalLoginButton);
         loginNormalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                Trecho de codigo teste para o Parse
+//                ParseObject hashTag = new ParseObject("HashTag");
+//                hashTag.put("descricao", "#teste");
+//                hashTag.saveInBackground();
                 MenuScreen();
             }
         });
@@ -98,6 +94,38 @@ public class LoginActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
+
+
+    private void onfbClick() {
+        callbackManager = CallbackManager.Factory.create();
+
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email","public_profile"));
+        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                // App code
+                AccessToken accessToken = loginResult.getAccessToken();
+                Profile profile = Profile.getCurrentProfile();
+
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "first_name,last_name");
+                //request.setParameters(parameters);
+                //request.executeAsync();
+                MenuScreen();
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+
+            }
+        });
+    }
+
 }
 
 
