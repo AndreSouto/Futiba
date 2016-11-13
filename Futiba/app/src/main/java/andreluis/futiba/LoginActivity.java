@@ -3,6 +3,8 @@ package andreluis.futiba;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -12,6 +14,10 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.parse.LogInCallback;
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseUser;
 
 import java.util.Arrays;
 
@@ -19,11 +25,18 @@ public class LoginActivity extends AppCompatActivity {
 
    // private EditText Login, Senha;
     private LoginButton loginButton;
+    private Button loginNormalButton;
     private CallbackManager callbackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Parse.initialize(new Parse.Configuration.Builder(this)
+                .applicationId("3HZSG8lHjzVfdt4Phg9O2uprnJpv5sBB3NGF0cgh")
+                .clientKey("9oClZtKqkum9f7dhn73Uy1aCWYuZkWtKjOTvrwYM")
+                .server("https://parseapi.back4app.com/").build()
+        );
+
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_login);
 
@@ -61,6 +74,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onError(FacebookException error) {
                 Toast.makeText(getApplicationContext(), "Login ou senha incorretos", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        loginNormalButton = (Button) findViewById(R.id.normalLoginButton);
+        loginNormalButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MenuScreen();
             }
         });
     }

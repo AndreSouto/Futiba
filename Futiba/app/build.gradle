@@ -4,12 +4,17 @@ android {
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
 
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
     defaultConfig {
         applicationId "andreluis.futiba"
         minSdkVersion 17
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -25,6 +30,12 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.2.1'
-    compile 'com.facebook.android:facebook-android-sdk:4.5.0'
     compile 'com.google.android.gms:play-services:9.8.0'
+    compile files('src/Parse-1.13.0.jar')
+    compile files('src/bolts-tasks-1.4.0.jar')
+    compile ('com.facebook.android:facebook-android-sdk:4.5.0'){
+        exclude group: 'com.parse.bolts',
+                module: 'bolts-android'
+    }
+
 }
