@@ -22,6 +22,54 @@
         android:textStyle="bold"
         android:inputType="textCapCharacters" />
 
+    <ImageButton
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:id="@+id/luz"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="255dp"
+        android:src="@drawable/b"
+        android:clickable="true"
+        android:elevation="0dp"
+        android:background="#ffffffff"
+        android:scaleType="fitXY"/>
+
+    <ImageButton
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:id="@+id/banheiro"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="255dp"
+        android:src="@drawable/a"
+        android:scaleType="fitXY"
+        android:clickable="true"
+        android:elevation="0dp"
+        android:background="#00ffffff" />
+
+    <ImageButton
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:id="@+id/agua"
+        android:layout_marginLeft="200dp"
+        android:src="@drawable/e"
+        android:layout_marginTop="255dp"
+        android:clickable="true"
+        android:elevation="0dp"
+        android:background="#00ffffff"
+        android:scaleType="fitXY"/>
+
+    <ImageButton
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:id="@+id/pago"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="255dp"
+        android:src="@drawable/g"
+        android:clickable="true"
+        android:elevation="0dp"
+        android:background="#00ffffff"
+        android:scaleType="fitXY"/>
+
 
     <Button
         android:layout_width="60dp"

@@ -16,6 +16,11 @@ import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.parse.FindCallback;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
+import java.util.List;
 
 public class BuscarActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -24,6 +29,9 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
     private ImageButton i_pesquisa, i_filtro, i_lista;
     private ImageView i_pelada_quadra;
     private int amarelo = 1;
+    private List<ArenaTable> atlist;
+    private ArenaTable at;
+    private ParseObject parse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +120,35 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
                         .icon(icon));
 
              /*************************************************************************************/
+
+
+             /***************************Banco de Dados*********************************************/
+
+                ParseQuery<ParseObject> query = ParseQuery.getQuery("ArenaTable");
+                query.whereGreaterThan("nota", -1);
+                query.findInBackground(new FindCallback<ParseObject>() {
+                    @Override
+                    public void done(List<ParseObject> list, com.parse.ParseException e) {
+                        if (e == null) {
+
+                            //Marcando no mapa todas as quadras criadas pelo usuario
+                            for(int i = 0; i < list.size(); i++) {
+
+                                parse = new ParseObject("ArenaTable");
+
+                                LatLng arena_nova = new LatLng(parse.getDouble("latitude"), parse.getDouble("longitude"));
+                                mMap.addMarker(new MarkerOptions().position(arena_nova)
+                                        .icon(icon));
+                            }
+                        }
+                        else {
+
+                        }
+                    }
+
+                });
+
+              /*************************************************************************************/
 
 
             }

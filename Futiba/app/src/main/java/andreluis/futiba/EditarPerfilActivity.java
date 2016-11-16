@@ -3,12 +3,9 @@ package andreluis.futiba;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.ToggleButton;
-
-import static andreluis.futiba.PerfilActivity.*;
 
 public class EditarPerfilActivity extends AppCompatActivity {
 
@@ -46,14 +43,14 @@ public class EditarPerfilActivity extends AppCompatActivity {
         jogaGolSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pf.setJogaGol(jogaGolSwitch.isChecked());
+                //pf.setJogaGol(jogaGolSwitch.isChecked());
             }
         });
 
         butaoPosicao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pf.setJogaGol();
+                //pf.setJogaGol(true);
             }
         });
 

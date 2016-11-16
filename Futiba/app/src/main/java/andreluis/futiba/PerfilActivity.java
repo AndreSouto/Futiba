@@ -78,5 +78,4 @@ public class PerfilActivity extends AppCompatActivity {
         return filosofia;
     }
 
-    }
 }

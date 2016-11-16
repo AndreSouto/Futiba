@@ -11,10 +11,6 @@ import android.widget.ListView;
 
 import com.facebook.Profile;
 import com.facebook.login.widget.ProfilePictureView;
-import com.parse.Parse;
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseUser;
 
 import java.util.ArrayList;
 
@@ -37,8 +33,6 @@ public class MenuActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         setContentView(R.layout.activity_menu);
 
 
