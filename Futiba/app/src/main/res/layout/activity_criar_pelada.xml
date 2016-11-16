@@ -40,6 +40,7 @@
         android:textColorHint="#9A9A9A"
         android:textStyle="italic"
         android:textSize="19dp"
+        android:id="@+id/endereco"
         android:inputType="textCapCharacters" />
 
     <Button

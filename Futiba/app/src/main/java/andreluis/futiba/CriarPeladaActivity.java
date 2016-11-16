@@ -3,6 +3,8 @@ package andreluis.futiba;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -12,11 +14,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import java.io.IOException;
+import java.util.List;
+
 public class CriarPeladaActivity extends AppCompatActivity {
 
     private Button criar, zoeira, casual, competitivo, cameraButton;
-    private EditText nome, preco, horario_inicio, horario_fim, participantes;
+    private EditText nome, preco, horario_inicio, horario_fim, participantes, endereco;
     private ImageView fotoTirada;
+    private Geocoder gc;
+    private String auxiliar;
+    private double latitude, longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +34,10 @@ public class CriarPeladaActivity extends AppCompatActivity {
 
         this.fotoTirada = (ImageView)this.findViewById(R.id.fotoTirada);
 
+        gc = new Geocoder(this);
 
         nome = (EditText) findViewById(R.id.edittext);
+        endereco = (EditText) findViewById(R.id.endereco);
         preco = (EditText) findViewById(R.id.editText);
         horario_inicio = (EditText) findViewById(R.id.editText3);
         horario_fim = (EditText) findViewById(R.id.editText2);
@@ -55,8 +65,28 @@ public class CriarPeladaActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                //Acao ao clicar em CRIAR! Banco de Dados
-                BuscarScreen();
+                //"Convertendo" o endereco em latitude e longitude
+                auxiliar = endereco.getText().toString();
+
+                try {
+
+                    List<Address> list = gc.getFromLocationName(auxiliar,1);
+                    Address add = list.get(0);
+                    String locality = add.getLocality();
+
+                    latitude = add.getLatitude();
+                    longitude = add.getLongitude();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+                //Cria a pelada e salva no banco de dados
+
+
+
+                BuscarScreen(); //Volta para a tela BuscarActivity
 
             }
         });

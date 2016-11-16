@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -126,16 +125,18 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
              /***************************Banco de Dados*********************************************/
 
                 ParseQuery<ParseObject> query = ParseQuery.getQuery("ArenaTable");
-                query.whereGreaterThan("nota", 1);
+                query.whereGreaterThan("nota", -1);
                 query.findInBackground(new FindCallback<ParseObject>() {
                     @Override
                     public void done(List<ParseObject> list, com.parse.ParseException e) {
                         if (e == null) {
 
+                            parse = new ParseObject("ArenaTable");
+
                             //Marcando no mapa todas as quadras criadas pelo usuario
                             for(int i = 0; i < list.size(); i++) {
-                                Toast.makeText(getApplicationContext(), "list "+list.size(),Toast.LENGTH_SHORT).show();
-                                parse = new ParseObject("ArenaTable");
+
+                                parse = list.get(i);
 
                                 LatLng arena_nova = new LatLng(parse.getDouble("latitude"), parse.getDouble("longitude"));
                                 mMap.addMarker(new MarkerOptions().position(arena_nova)
