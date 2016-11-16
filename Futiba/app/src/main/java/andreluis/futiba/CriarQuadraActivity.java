@@ -2,24 +2,33 @@ package andreluis.futiba;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.parse.ParseObject;
 
+import java.io.IOException;
+import java.util.List;
+
 public class CriarQuadraActivity extends AppCompatActivity {
 
+    private EditText enderecoEditText;
     private Button ruim, regular, bom, society, futsal, grama, criar;
     private ImageButton luz, agua, pago, banheiro;
     private int intLuz = 0, intAgua = 0, intPago = 0, intBanheiro = 0;
-    private int id = 0, nota, latitude = 0, longitude = 0;
+    private int id = 0, nota;
     private boolean agua_perto, banheiro_perto, luz_perto, quadra_paga;
-    private String tipo;
+    private String tipo, auxiliar;
     private ParseObject parse;
+    private double latitude = 0, longitude = 0;
+    private Geocoder gc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +36,11 @@ public class CriarQuadraActivity extends AppCompatActivity {
         setContentView(R.layout.activity_criar_quadra);
 
 
-    /**************Agua, luz, banheiro e pago******************************************************/
+        enderecoEditText = (EditText) findViewById(R.id.endereco);
+        gc = new Geocoder(this);
+
+
+        /**************Agua, luz, banheiro e pago******************************************************/
 
         agua = (ImageButton) findViewById(R.id.agua);
         agua.setOnClickListener(new View.OnClickListener() {
@@ -127,16 +140,34 @@ public class CriarQuadraActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
+
+                //"Convertendo" o endereco em latitude e longitude
+                auxiliar = enderecoEditText.getText().toString();
+
+                try {
+
+                    List<Address> list = gc.getFromLocationName(auxiliar,1);
+                    Address add = list.get(0);
+                    String locality = add.getLocality();
+
+                    latitude = add.getLatitude();
+                    longitude = add.getLongitude();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
                 //Cria a quadra e salva no banco de dados
                 parse = new ParseObject("ArenaTable");
 
 
                 parse.put("nota", nota);
-                parse.put("latitude", -15.758625);
-                parse.put("longitude", -47.887256);
+                parse.put("latitude", latitude);
+                parse.put("longitude", longitude);
                 parse.put("agua_perto", agua_perto);
                 parse.put("banheiro_perto", banheiro_perto);
-                parse.put("tipo",tipo);
+                parse.put("tipo", tipo);
                 parse.put("quadra_paga", quadra_paga);
                 parse.put("luz_perto", luz_perto);
                 parse.saveInBackground();

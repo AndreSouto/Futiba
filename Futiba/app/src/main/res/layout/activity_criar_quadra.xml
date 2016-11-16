@@ -17,10 +17,26 @@
         android:layout_marginLeft="22dp"
         android:background="#ffffff"
         android:hint="NOME DA QUADRA"
+        android:textColorHint="#E65302"
         android:gravity="left|bottom"
         android:textColor="#E65302"
         android:textStyle="bold"
         android:inputType="textCapCharacters" />
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginLeft="22dp"
+        android:background="#ffffff"
+        android:hint="endereço"
+        android:gravity="left|bottom"
+        android:textColor="#9A9A9A"
+        android:textStyle="italic"
+        android:textSize="20dp"
+        android:id="@+id/endereco"
+        android:textColorHint="#9A9A9A"
+        android:inputType="text" />
 
     <ImageButton
         android:layout_width="55dp"
