@@ -173,7 +173,7 @@ public class CriarQuadraActivity extends AppCompatActivity {
 
 
                 //Cria a quadra e salva no banco de dados
-                parse = new ParseObject("ArenaTable");
+                parse = new ParseObject("Arena");
 
 
                 parse.put("nome", auxiliar_nome);

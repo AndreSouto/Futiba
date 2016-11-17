@@ -18,7 +18,11 @@
         android:layout_marginTop="355dp"
         android:layout_marginLeft="70dp"
         android:textColor="#4DB3AA"
-        android:gravity="center"/>
+        android:hint="Login"
+        android:textStyle="italic"
+        android:textSize="15sp"
+        android:textColorHint="#4DB3AA"
+        android:gravity="left|bottom"/>
 
     <EditText
         android:layout_width="250sp"
@@ -27,11 +31,14 @@
         android:background="@drawable/edittext"
         android:layout_marginTop="399dp"
         android:layout_marginLeft="70dp"
-        android:textStyle="normal"
+        android:textStyle="italic"
+        android:textSize="15sp"
         android:textColor="#4DB3AA"
         android:inputType="textVisiblePassword"
+        android:hint="Senha"
+        android:textColorHint="#4DB3AA"
         android:password="true"
-        android:gravity="center" />
+        android:gravity="left|bottom" />
 
     <FrameLayout
         android:layout_width="200dp"
@@ -54,7 +61,7 @@
         android:layout_below="@id/editTextSenha"
         android:id="@+id/normalLoginButton"
         android:background="#000000"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="60dp"
         android:text="Login"
         android:textColor="#FFFFFF"
         android:clickable="true" />

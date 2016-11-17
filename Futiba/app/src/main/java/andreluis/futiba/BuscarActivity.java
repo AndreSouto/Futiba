@@ -64,6 +64,8 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
                                         fromResource(R.drawable.pel); //Imagem que marca as peladas
 
 
+        //mMap.OnMarkerClickListener();
+
 
         i_pesquisa = (ImageButton)findViewById(R.id.imageButton3);
         i_pesquisa.setOnClickListener(new View.OnClickListener() {
@@ -109,14 +111,14 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
 
                /**********Banco de Dados das Peladas**************************************************/
 
-                ParseQuery<ParseObject> query = ParseQuery.getQuery("PeladaTable");
+                ParseQuery<ParseObject> query = ParseQuery.getQuery("Pelada");
                 query.whereGreaterThan("participantes", -1);
                 query.findInBackground(new FindCallback<ParseObject>() {
                     @Override
                     public void done(List<ParseObject> list, com.parse.ParseException e) {
                         if (e == null) {
 
-                            parse = new ParseObject("PeladaTable");
+                            parse = new ParseObject("Pelada");
 
                             //Marcando no mapa todas as peladas criadas
                             for(int i = 0; i < list.size(); i++) {
@@ -182,14 +184,14 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
 
              /***************************Banco de Dados das Quadras********************************/
 
-                ParseQuery<ParseObject> query = ParseQuery.getQuery("ArenaTable");
+                ParseQuery<ParseObject> query = ParseQuery.getQuery("Arena");
                 query.whereGreaterThan("nota", -1);
                 query.findInBackground(new FindCallback<ParseObject>() {
                     @Override
                     public void done(List<ParseObject> list, com.parse.ParseException e) {
                         if (e == null) {
 
-                            parse = new ParseObject("ArenaTable");
+                            parse = new ParseObject("Arena");
 
                             //Marcando no mapa todas as quadras criadas pelo usuario
                             for(int i = 0; i < list.size(); i++) {
@@ -247,12 +249,14 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
         });
     }
 
+
     public void MenuScreen(){
 
         Intent Main = new Intent(this,MenuActivity.class);      //mudar para activity Menu
         startActivity(Main);
 
     }
+
 
     /**
      * Manipulates the map once available.
@@ -263,6 +267,7 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -282,11 +287,20 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
         startActivity(cqs);
     }
 
+
     public void CriarPeladaScreen(){
 
         Intent cps = new Intent(this, CriarPeladaActivity.class);
         startActivity(cps);
     }
+
+
+    public void InfoQuadra(){
+
+        Intent i = new Intent(this, QuadraSelecionadaActivity.class);
+        startActivity(i);
+    }
+
 
     @Override
     public void onResume(){     //metodo chamado primeiro sempre que a activity eh pausada
@@ -301,5 +315,6 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
         /**************************************************************/
 
     }
+
 
 }

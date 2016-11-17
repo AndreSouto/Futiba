@@ -105,7 +105,7 @@ public class CriarPeladaActivity extends AppCompatActivity {
 
 
                 //Cria a pelada e salva no banco de dados
-                parse = new ParseObject("PeladaTable");
+                parse = new ParseObject("Pelada");
 
 
                 parse.put("nome", auxiliar_nome);
