@@ -35,6 +35,7 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
     private ArenaTable at;
     private ParseObject parse;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +62,7 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
                                         fromResource(R.drawable.footballfield); //Imagem que marca as quadras
 
         final BitmapDescriptor icon_peladas = BitmapDescriptorFactory.
-                                        fromResource(R.drawable.pel); //Imagem que marca as peladas
+                fromResource(R.drawable.pel); //Imagem que marca as peladas
 
 
         //mMap.OnMarkerClickListener();
@@ -98,21 +99,11 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
                 amarelo = 1;
 
 
-                /******************Adicionando marcacao de pelada default****************************/
-
-                LatLng q1 = new LatLng(-15.75562, -47.8910);
-
-
-                mMap.addMarker(new MarkerOptions().position(q1)
-                        .icon(icon_peladas));
-
-                /*************************************************************************************/
-
 
                /**********Banco de Dados das Peladas**************************************************/
 
                 ParseQuery<ParseObject> query = ParseQuery.getQuery("Pelada");
-                query.whereGreaterThan("participantes", -1);
+                query.whereExists("nome");
                 query.findInBackground(new FindCallback<ParseObject>() {
                     @Override
                     public void done(List<ParseObject> list, com.parse.ParseException e) {
@@ -131,6 +122,7 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
                             }
                         }
                         else {
+
 
                         }
                     }
@@ -158,28 +150,6 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
                 i_pelada_quadra.setImageResource(R.drawable.addquadra1);
                 amarelo = 0;
 
-
-             /******************Adicionando marcacoes de quadra default****************************/
-
-                LatLng q1 = new LatLng(-15.75562, -47.8910);
-                LatLng q2 = new LatLng(-15.756068, -47.889109);
-                LatLng q3 = new LatLng(-15.756146, -47.887583);
-                LatLng q4 = new LatLng(-15.759510, -47.889877);
-                LatLng q5 = new LatLng(-15.762312, -47.881520);
-
-
-                mMap.addMarker(new MarkerOptions().position(q1)
-                        .icon(icon));
-                mMap.addMarker(new MarkerOptions().position(q2)
-                        .icon(icon));
-                mMap.addMarker(new MarkerOptions().position(q3)
-                        .icon(icon));
-                mMap.addMarker(new MarkerOptions().position(q4)
-                        .icon(icon));
-                mMap.addMarker(new MarkerOptions().position(q5)
-                        .icon(icon));
-
-             /*************************************************************************************/
 
 
              /***************************Banco de Dados das Quadras********************************/
@@ -275,9 +245,50 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
         mMap = googleMap;
         mMap.setMyLocationEnabled(true);
 
+        //Inicializacao do mapa
+
         // Movendo a camera para posicao default no mapa
         LatLng Brasilia = new LatLng(-15.794028, -47.882536);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(Brasilia));
+
+
+
+        /**********Banco de Dados das Peladas**************************************************/
+
+        final BitmapDescriptor icon_peladas = BitmapDescriptorFactory.
+                fromResource(R.drawable.pel); //Imagem que marca as peladas
+
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Pelada");
+        query.whereExists("nome");
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> list, com.parse.ParseException e) {
+                if (e == null) {
+
+                    parse = new ParseObject("Pelada");
+
+                    //Marcando no mapa todas as peladas criadas
+                    for(int i = 0; i < list.size(); i++) {
+
+                        parse = list.get(i);
+
+                        LatLng pelada_nova = new LatLng(parse.getDouble("latitude"), parse.getDouble("longitude"));
+                        mMap.addMarker(new MarkerOptions().position(pelada_nova)
+                                .icon(icon_peladas));
+                    }
+                }
+                else {
+
+
+                }
+            }
+
+        });
+
+        /***************************************************************************************/
+
+
     }
 
     
@@ -294,13 +305,13 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
         startActivity(cps);
     }
 
-
+/*
     public void InfoQuadra(){
 
         Intent i = new Intent(this, QuadraSelecionadaActivity.class);
         startActivity(i);
     }
-
+*/
 
     @Override
     public void onResume(){     //metodo chamado primeiro sempre que a activity eh pausada

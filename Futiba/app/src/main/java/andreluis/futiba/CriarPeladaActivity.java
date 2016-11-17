@@ -29,6 +29,7 @@ public class CriarPeladaActivity extends AppCompatActivity {
     private Geocoder gc;
     private String auxiliar_endereco, auxiliar_nome, tipo_da_pelada, auxiliar_preco,
                     auxiliar_horario_inicio, auxiliar_horario_fim, auxiliar_participantes;
+
     private double latitude, longitude;
     private ParseObject parse;
 
