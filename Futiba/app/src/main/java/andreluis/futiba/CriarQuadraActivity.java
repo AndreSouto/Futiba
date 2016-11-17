@@ -8,6 +8,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -19,13 +21,14 @@ import java.util.List;
 
 public class CriarQuadraActivity extends AppCompatActivity {
 
-    private EditText enderecoEditText;
-    private Button ruim, regular, bom, society, futsal, grama, criar;
+    private EditText enderecoEditText, nomeEditText;
+    private ImageButton ruim, regular, bom, society, futsal, grama;
+    private Button criar;
     private ImageButton luz, agua, pago, banheiro;
     private int intLuz = 0, intAgua = 0, intPago = 0, intBanheiro = 0;
     private int id = 0, nota;
     private boolean agua_perto, banheiro_perto, luz_perto, quadra_paga;
-    private String tipo, auxiliar;
+    private String tipo, auxiliar_endereco, auxiliar_nome;
     private ParseObject parse;
     private double latitude = 0, longitude = 0;
     private Geocoder gc;
@@ -36,7 +39,17 @@ public class CriarQuadraActivity extends AppCompatActivity {
         setContentView(R.layout.activity_criar_quadra);
 
 
+        //muda a cor do STATUS BAR
+        if (android.os.Build.VERSION.SDK_INT >= 21) {
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.red));
+        }
+
+
         enderecoEditText = (EditText) findViewById(R.id.endereco);
+        nomeEditText = (EditText) findViewById(R.id.nomedaquadra);
         gc = new Geocoder(this);
 
 
@@ -142,11 +155,12 @@ public class CriarQuadraActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 //"Convertendo" o endereco em latitude e longitude
-                auxiliar = enderecoEditText.getText().toString();
+                auxiliar_endereco = enderecoEditText.getText().toString();
+                auxiliar_nome = nomeEditText.getText().toString();
 
                 try {
 
-                    List<Address> list = gc.getFromLocationName(auxiliar,1);
+                    List<Address> list = gc.getFromLocationName(auxiliar_endereco,1);
                     Address add = list.get(0);
                     String locality = add.getLocality();
 
@@ -162,6 +176,7 @@ public class CriarQuadraActivity extends AppCompatActivity {
                 parse = new ParseObject("ArenaTable");
 
 
+                parse.put("nome", auxiliar_nome);
                 parse.put("nota", nota);
                 parse.put("latitude", latitude);
                 parse.put("longitude", longitude);
@@ -182,48 +197,48 @@ public class CriarQuadraActivity extends AppCompatActivity {
 
     /*********************Opcoes de conservacao da quadra********************************************/
 
-        ruim = (Button) findViewById(R.id.ruim);
+        ruim = (ImageButton) findViewById(R.id.ruim);
         ruim.setOnClickListener(new View.OnClickListener() {
 
             @TargetApi(Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View view) {
 
-                ruim.setElevation(1000);
-                regular.setElevation(0);
-                bom.setElevation(0);
+                ruim.setImageResource(R.drawable.ruimv);
+                regular.setImageResource(R.drawable.regular);
+                bom.setImageResource(R.drawable.bom);
                 nota = 0;
 
             }
         });
 
 
-        regular = (Button) findViewById(R.id.regular);
+        regular = (ImageButton) findViewById(R.id.regular);
         regular.setOnClickListener(new View.OnClickListener() {
 
             @TargetApi(Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View view) {
 
-                ruim.setElevation(0);
-                regular.setElevation(1000);
-                bom.setElevation(0);
+                ruim.setImageResource(R.drawable.ruim);
+                regular.setImageResource(R.drawable.regularv);
+                bom.setImageResource(R.drawable.bom);
                 nota = 1;
 
             }
         });
 
 
-        bom = (Button) findViewById(R.id.bom);
+        bom = (ImageButton) findViewById(R.id.bom);
         bom.setOnClickListener(new View.OnClickListener() {
 
             @TargetApi(Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View view) {
 
-                ruim.setElevation(0);
-                regular.setElevation(0);
-                bom.setElevation(1000);
+                ruim.setImageResource(R.drawable.ruim);
+                regular.setImageResource(R.drawable.regular);
+                bom.setImageResource(R.drawable.bomv);
                 nota = 2;
 
             }
@@ -236,48 +251,48 @@ public class CriarQuadraActivity extends AppCompatActivity {
 
      /*********************Opcoes de tipo da quadra**************************************************/
 
-        society = (Button) findViewById(R.id.society);
+        society = (ImageButton) findViewById(R.id.society);
         society.setOnClickListener(new View.OnClickListener() {
 
             @TargetApi(Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View view) {
 
-                society.setElevation(1000);
-                futsal.setElevation(0);
-                grama.setElevation(0);
+                society.setImageResource(R.drawable.societyv);
+                futsal.setImageResource(R.drawable.futsal);
+                grama.setImageResource(R.drawable.grama);
                 tipo = "society";
 
             }
         });
 
 
-        futsal = (Button) findViewById(R.id.futsal);
+        futsal = (ImageButton) findViewById(R.id.futsal);
         futsal.setOnClickListener(new View.OnClickListener() {
 
             @TargetApi(Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View view) {
 
-                society.setElevation(0);
-                futsal.setElevation(1000);
-                grama.setElevation(0);
+                society.setImageResource(R.drawable.society);
+                futsal.setImageResource(R.drawable.futsalv);
+                grama.setImageResource(R.drawable.grama);
                 tipo = "futsal";
 
             }
         });
 
 
-        grama = (Button) findViewById(R.id.grama);
+        grama = (ImageButton) findViewById(R.id.grama);
         grama.setOnClickListener(new View.OnClickListener() {
 
             @TargetApi(Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View view) {
 
-                society.setElevation(0);
-                futsal.setElevation(0);
-                grama.setElevation(1000);
+                society.setImageResource(R.drawable.society);
+                futsal.setImageResource(R.drawable.futsal);
+                grama.setImageResource(R.drawable.gramav);
                 tipo = "grama";
 
             }

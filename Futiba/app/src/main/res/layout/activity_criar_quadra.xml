@@ -18,6 +18,7 @@
         android:background="#ffffff"
         android:hint="NOME DA QUADRA"
         android:textColorHint="#E65302"
+        android:id="@+id/nomedaquadra"
         android:gravity="left|bottom"
         android:textColor="#E65302"
         android:textStyle="bold"
@@ -87,9 +88,9 @@
         android:scaleType="fitXY"/>
 
 
-    <Button
+    <ImageButton
         android:layout_width="60dp"
-        android:layout_height="20dp"
+        android:layout_height="26dp"
         android:background="#ffffff"
         android:id="@+id/ruim"
         android:layout_marginLeft="45dp"
@@ -97,13 +98,17 @@
         android:clickable="true"
         android:text="ruim"
         android:textColor="#9A9A9A"
+        android:src="@drawable/ruim"
+        android:scaleType="centerCrop"
         android:elevation="0dp" />
 
-    <Button
+    <ImageButton
         android:layout_width="70dp"
-        android:layout_height="20dp"
+        android:layout_height="26dp"
         android:background="#ffffff"
         android:id="@+id/regular"
+        android:src="@drawable/regular"
+        android:scaleType="centerCrop"
         android:layout_marginLeft="137dp"
         android:layout_marginTop="365dp"
         android:elevation="0dp"
@@ -111,10 +116,12 @@
         android:textColor="#9a9a9a"
         android:text="regular" />
 
-    <Button
+    <ImageButton
         android:layout_width="60dp"
-        android:layout_height="20dp"
+        android:layout_height="26dp"
         android:id="@+id/bom"
+        android:src="@drawable/bom"
+        android:scaleType="centerCrop"
         android:background="#ffffff"
         android:layout_marginLeft="245dp"
         android:layout_marginTop="365dp"
@@ -123,11 +130,13 @@
         android:text="bom"
         android:textColor="#9A9A9A" />
 
-    <Button
+    <ImageButton
         android:layout_width="60dp"
-        android:layout_height="20dp"
+        android:layout_height="26dp"
         android:background="#ffffff"
         android:id="@+id/society"
+        android:src="@drawable/society"
+        android:scaleType="centerCrop"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="437dp"
         android:clickable="true"
@@ -135,11 +144,13 @@
         android:textColor="#9A9A9A"
         android:elevation="0dp" />
 
-    <Button
+    <ImageButton
         android:layout_width="70dp"
-        android:layout_height="20dp"
+        android:layout_height="26dp"
         android:background="#ffffff"
         android:id="@+id/futsal"
+        android:src="@drawable/futsal"
+        android:scaleType="centerCrop"
         android:layout_marginLeft="140dp"
         android:layout_marginTop="437dp"
         android:elevation="0dp"
@@ -147,11 +158,13 @@
         android:textColor="#9a9a9a"
         android:text="futsal" />
 
-    <Button
+    <ImageButton
         android:layout_width="60dp"
-        android:layout_height="20dp"
+        android:layout_height="26dp"
         android:id="@+id/grama"
         android:background="#ffffff"
+        android:src="@drawable/grama"
+        android:scaleType="centerCrop"
         android:layout_marginLeft="245dp"
         android:layout_marginTop="437dp"
         android:elevation="0dp"

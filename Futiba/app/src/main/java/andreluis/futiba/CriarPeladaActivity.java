@@ -10,9 +10,13 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+
+import com.parse.ParseObject;
 
 import java.io.IOException;
 import java.util.List;
@@ -23,8 +27,10 @@ public class CriarPeladaActivity extends AppCompatActivity {
     private EditText nome, preco, horario_inicio, horario_fim, participantes, endereco;
     private ImageView fotoTirada;
     private Geocoder gc;
-    private String auxiliar;
+    private String auxiliar_endereco, auxiliar_nome, tipo_da_pelada, auxiliar_preco,
+                    auxiliar_horario_inicio, auxiliar_horario_fim, auxiliar_participantes;
     private double latitude, longitude;
+    private ParseObject parse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +38,21 @@ public class CriarPeladaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_criar_pelada);
 
 
+        //muda a cor do STATUS BAR
+        if (android.os.Build.VERSION.SDK_INT >= 21) {
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.yellow));
+        }
+
+
+
         this.fotoTirada = (ImageView)this.findViewById(R.id.fotoTirada);
 
         gc = new Geocoder(this);
 
-        nome = (EditText) findViewById(R.id.edittext);
+        nome = (EditText) findViewById(R.id.nome);
         endereco = (EditText) findViewById(R.id.endereco);
         preco = (EditText) findViewById(R.id.editText);
         horario_inicio = (EditText) findViewById(R.id.editText3);
@@ -65,12 +81,18 @@ public class CriarPeladaActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                //"Convertendo" o endereco em latitude e longitude
-                auxiliar = endereco.getText().toString();
+                auxiliar_endereco = endereco.getText().toString();
+                auxiliar_nome = nome.getText().toString();
+                auxiliar_preco = preco.getText().toString();
+                auxiliar_horario_inicio = horario_inicio.getText().toString();
+                auxiliar_horario_fim = horario_fim.getText().toString();
+                auxiliar_participantes = participantes.getText().toString();
 
+
+                //"Convertendo" o endereco em latitude e longitude
                 try {
 
-                    List<Address> list = gc.getFromLocationName(auxiliar,1);
+                    List<Address> list = gc.getFromLocationName(auxiliar_endereco,1);
                     Address add = list.get(0);
                     String locality = add.getLocality();
 
@@ -83,6 +105,19 @@ public class CriarPeladaActivity extends AppCompatActivity {
 
 
                 //Cria a pelada e salva no banco de dados
+                parse = new ParseObject("PeladaTable");
+
+
+                parse.put("nome", auxiliar_nome);
+                //parse.put("imagem",...); -- Foto da quadra
+                parse.put("tipo", tipo_da_pelada);
+                parse.put("latitude", latitude);
+                parse.put("longitude", longitude);
+                parse.put("preco", auxiliar_preco);
+                parse.put("hoario_inicio", auxiliar_horario_inicio);
+                parse.put("horario_fim", auxiliar_horario_fim);
+                parse.put("participantes", auxiliar_participantes);
+                parse.saveInBackground();
 
 
 
@@ -102,6 +137,7 @@ public class CriarPeladaActivity extends AppCompatActivity {
                 zoeira.setElevation(1000);
                 casual.setElevation(0);
                 competitivo.setElevation(0);
+                tipo_da_pelada = "zoeira";
 
             }
         });
@@ -117,6 +153,7 @@ public class CriarPeladaActivity extends AppCompatActivity {
                 zoeira.setElevation(0);
                 casual.setElevation(1000);
                 competitivo.setElevation(0);
+                tipo_da_pelada = "casual";
 
             }
         });
@@ -132,6 +169,7 @@ public class CriarPeladaActivity extends AppCompatActivity {
                 zoeira.setElevation(0);
                 casual.setElevation(0);
                 competitivo.setElevation(1000);
+                tipo_da_pelada = "competitivo";
 
             }
         });

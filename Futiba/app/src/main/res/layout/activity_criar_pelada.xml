@@ -17,14 +17,14 @@
         android:layout_marginTop="135dp"
         android:layout_marginLeft="20dp"
         android:gravity="left|bottom"
-        android:inputType="textCapCharacters"
+        android:inputType="text"
         android:textStyle="bold"
         android:textColor="#FFA103"
         android:textColorHint="#FFA103"
         android:singleLine="false"
         android:editable="true"
         android:elegantTextHeight="false"
-        android:id="@+id/edittext"
+        android:id="@+id/nome"
         android:background="#ffffffff"
         android:hint="NOME DA PELADA" />
 
@@ -39,9 +39,9 @@
         android:textColor="#9A9A9A"
         android:textColorHint="#9A9A9A"
         android:textStyle="italic"
-        android:textSize="19dp"
+        android:textSize="19sp"
         android:id="@+id/endereco"
-        android:inputType="textCapCharacters" />
+        android:inputType="text" />
 
     <Button
         android:layout_width="155dp"

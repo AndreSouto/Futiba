@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -39,6 +41,16 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
         setContentView(R.layout.activity_buscar);
 
 
+        //muda a cor do STATUS BAR
+        if (android.os.Build.VERSION.SDK_INT >= 21) {
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.green));
+        }
+
+
+
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -47,6 +59,9 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
 
         final BitmapDescriptor icon = BitmapDescriptorFactory.
                                         fromResource(R.drawable.footballfield); //Imagem que marca as quadras
+
+        final BitmapDescriptor icon_peladas = BitmapDescriptorFactory.
+                                        fromResource(R.drawable.pel); //Imagem que marca as peladas
 
 
 
@@ -79,6 +94,38 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
                 i_lista.setImageResource(R.drawable.listapeladas);
                 i_pelada_quadra.setImageResource(R.drawable.addpelada_1);
                 amarelo = 1;
+
+
+        /**************Banco de Dados das Peladas***************************************************/
+
+                ParseQuery<ParseObject> query = ParseQuery.getQuery("PeladaTable");
+                query.whereGreaterThan("participantes", -1);
+                query.findInBackground(new FindCallback<ParseObject>() {
+                    @Override
+                    public void done(List<ParseObject> list, com.parse.ParseException e) {
+                        if (e == null) {
+
+                            parse = new ParseObject("PeladaTable");
+
+                            //Marcando no mapa todas as peladas criadas
+                            for(int i = 0; i < list.size(); i++) {
+
+                                parse = list.get(i);
+
+                                LatLng pelada_nova = new LatLng(parse.getDouble("latitude"), parse.getDouble("longitude"));
+                                mMap.addMarker(new MarkerOptions().position(pelada_nova)
+                                        .icon(icon_peladas));
+                            }
+                        }
+                        else {
+
+                        }
+                    }
+
+                });
+
+        /*******************************************************************************************/
+
 
             }
         });
@@ -122,7 +169,7 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
              /*************************************************************************************/
 
 
-             /***************************Banco de Dados*********************************************/
+             /***************************Banco de Dados das Quadras********************************/
 
                 ParseQuery<ParseObject> query = ParseQuery.getQuery("ArenaTable");
                 query.whereGreaterThan("nota", -1);
