@@ -51,11 +51,11 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
 
 
 
-
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
 
         final BitmapDescriptor icon = BitmapDescriptorFactory.
                                         fromResource(R.drawable.footballfield); //Imagem que marca as quadras
@@ -96,7 +96,18 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
                 amarelo = 1;
 
 
-        /**************Banco de Dados das Peladas***************************************************/
+                /******************Adicionando marcacao de pelada default****************************/
+
+                LatLng q1 = new LatLng(-15.75562, -47.8910);
+
+
+                mMap.addMarker(new MarkerOptions().position(q1)
+                        .icon(icon_peladas));
+
+                /*************************************************************************************/
+
+
+               /**********Banco de Dados das Peladas**************************************************/
 
                 ParseQuery<ParseObject> query = ParseQuery.getQuery("PeladaTable");
                 query.whereGreaterThan("participantes", -1);
@@ -124,7 +135,7 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
 
                 });
 
-        /*******************************************************************************************/
+              /***************************************************************************************/
 
 
             }
@@ -275,6 +286,20 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
 
         Intent cps = new Intent(this, CriarPeladaActivity.class);
         startActivity(cps);
+    }
+
+    @Override
+    public void onResume(){     //metodo chamado primeiro sempre que a activity eh pausada
+        super.onResume();       // e depois volta a ter atividade (botao de voltar da tela)
+
+        /*************Escondendo status bar****************************/
+        View decorView = getWindow().getDecorView();
+        // Hide the status bar.
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
+
+        /**************************************************************/
+
     }
 
 }

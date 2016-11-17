@@ -46,6 +46,7 @@ public class MenuActivity extends Activity {
         }
 
 
+
         /********************Barra de menu***********************************************************************/
 
         // load slide menu items
@@ -249,6 +250,20 @@ public class MenuActivity extends Activity {
 
         Intent editarPerfilScreen = new Intent(this, EditarPerfilActivity.class);
         startActivity(editarPerfilScreen);
+    }
+
+    @Override
+    public void onResume(){     //metodo chamado primeiro sempre que a activity eh pausada
+        super.onResume();       // e depois volta a ter atividade (botao de voltar da tela)
+
+        /*************Escondendo status bar****************************/
+        View decorView = getWindow().getDecorView();
+        // Hide the status bar.
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
+
+        /**************************************************************/
+
     }
 
 
