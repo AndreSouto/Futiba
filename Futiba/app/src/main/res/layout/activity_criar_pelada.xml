@@ -52,43 +52,40 @@
         android:id="@+id/criar"
         android:layout_marginLeft="117dp"/>
 
-    <Button
+    <ImageButton
         android:layout_width="60dp"
-        android:layout_height="20dp"
+        android:layout_height="35dp"
         android:background="#ffffff"
         android:id="@+id/zoeira"
         android:layout_marginLeft="67dp"
-        android:layout_marginTop="260dp"
+        android:layout_marginTop="250dp"
         android:clickable="true"
-        android:foreground="#00fc0707"
-        android:text="zoeira"
-        android:textColor="#9A9A9A"
-        android:elevation="0dp" />
+        android:scaleType="centerCrop"
+        android:src="@drawable/zoeira" />
 
-    <Button
-        android:layout_width="65dp"
-        android:layout_height="20dp"
+    <ImageButton
+        android:layout_width="69dp"
+        android:layout_height="35dp"
         android:background="#ffffff"
         android:id="@+id/casual"
-        android:layout_marginLeft="140dp"
-        android:layout_marginTop="260dp"
+        android:layout_marginLeft="138dp"
+        android:layout_marginTop="250dp"
         android:elevation="0dp"
         android:clickable="true"
-        android:textColor="#9a9a9a"
-        android:text="casual" />
+        android:scaleType="centerCrop"
+        android:src="@drawable/casual" />
 
-    <Button
-        android:layout_width="110dp"
-        android:layout_height="20dp"
+    <ImageButton
+        android:layout_width="115dp"
+        android:layout_height="35dp"
         android:id="@+id/competitivo"
         android:background="#ffffff"
         android:layout_marginLeft="215dp"
-        android:layout_marginTop="260dp"
+        android:layout_marginTop="250dp"
         android:elevation="0dp"
         android:clickable="true"
-        android:text="competitivo"
-        android:textColor="#9A9A9A"
-        android:singleLine="false" />
+        android:scaleType="centerCrop"
+        android:src="@drawable/competitivo" />
 
     <Button
         android:layout_width="50dp"

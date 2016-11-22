@@ -14,6 +14,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.parse.ParseObject;
@@ -23,7 +24,8 @@ import java.util.List;
 
 public class CriarPeladaActivity extends AppCompatActivity {
 
-    private Button criar, zoeira, casual, competitivo, cameraButton;
+    private ImageButton zoeira, casual, competitivo;
+    private Button cameraButton, criar;
     private EditText nome, preco, horario_inicio, horario_fim, participantes, endereco;
     private ImageView fotoTirada;
     private Geocoder gc;
@@ -128,48 +130,48 @@ public class CriarPeladaActivity extends AppCompatActivity {
         });
 
 
-        zoeira = (Button) findViewById(R.id.zoeira);
+        zoeira = (ImageButton) findViewById(R.id.zoeira);
         zoeira.setOnClickListener(new View.OnClickListener() {
 
             @TargetApi(Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View view) {
 
-                zoeira.setElevation(1000);
-                casual.setElevation(0);
-                competitivo.setElevation(0);
+                //zoeira.setImageResource(R.drawable.zoeiraa);  --TODO !!!
+                casual.setImageResource(R.drawable.casual);
+                competitivo.setImageResource(R.drawable.competitivo);
                 tipo_da_pelada = "zoeira";
 
             }
         });
 
 
-        casual = (Button) findViewById(R.id.casual);
+        casual = (ImageButton) findViewById(R.id.casual);
         casual.setOnClickListener(new View.OnClickListener() {
 
             @TargetApi(Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View view) {
 
-                zoeira.setElevation(0);
-                casual.setElevation(1000);
-                competitivo.setElevation(0);
+                zoeira.setImageResource(R.drawable.zoeira);
+                casual.setImageResource(R.drawable.casuala);
+                competitivo.setImageResource(R.drawable.competitivo);
                 tipo_da_pelada = "casual";
 
             }
         });
 
 
-        competitivo = (Button) findViewById(R.id.competitivo);
+        competitivo = (ImageButton) findViewById(R.id.competitivo);
         competitivo.setOnClickListener(new View.OnClickListener() {
 
             @TargetApi(Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View view) {
 
-                zoeira.setElevation(0);
-                casual.setElevation(0);
-                competitivo.setElevation(1000);
+                zoeira.setImageResource(R.drawable.zoeira);
+                casual.setImageResource(R.drawable.casual);
+                competitivo.setImageResource(R.drawable.competitivoa);
                 tipo_da_pelada = "competitivo";
 
             }
