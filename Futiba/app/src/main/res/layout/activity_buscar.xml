@@ -131,13 +131,58 @@
         android:background="#a2e65302">
 
 
-        <ImageButton
+        <ImageView
             android:layout_width="350dp"
             android:layout_height="350dp"
             android:layout_marginLeft="18dp"
             android:layout_marginTop="100dp"
             android:visibility="visible"
             />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:elevation="10dp"
+        android:id="@+id/lay2"
+        android:alpha="0.7"
+        android:visibility="gone"
+        android:background="#FFA103">
+
+
+    <ImageView
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="90dp"
+        android:visibility="visible"
+        android:src="@drawable/mapapeladas"
+        />
+
+    <RelativeLayout
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="160dp"
+        android:elevation="10dp"
+        android:id="@+id/lay3"
+        android:alpha="1"
+        android:visibility="visible"
+        android:background="#FFFFFF">
+
+        <ListView
+            android:layout_width="280dp"
+            android:layout_height="280dp"
+            android:alpha="1"
+            android:id="@+id/list"
+            android:choiceMode="singleChoice"
+            android:divider="#2d2b28"
+            android:dividerHeight="1dp">
+
+        </ListView>
+
+    </RelativeLayout>
 
     </FrameLayout>
 

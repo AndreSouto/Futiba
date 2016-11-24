@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -25,6 +27,8 @@ import com.parse.FindCallback;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class BuscarActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -37,7 +41,7 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
     private List<ArenaTable> atlist;
     private ArenaTable at;
     private ParseObject parse, parse_aux;
-    private FrameLayout framelayout;
+    private FrameLayout framelayout, framelayout2;
 
 
     @Override
@@ -88,6 +92,18 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
             public boolean onTouch(View v, MotionEvent event) {
 
                 framelayout.setVisibility(View.GONE);
+                return false;
+            }
+        });
+
+
+
+        framelayout2 = (FrameLayout) findViewById(R.id.lay2);      //Frame layout que aparece quando uma pelada eh selecionada
+        framelayout2.setOnTouchListener(new View.OnTouchListener() {     //Sair do frame layout quando for clicado
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                framelayout2.setVisibility(View.GONE);
                 return false;
             }
         });
@@ -326,7 +342,9 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
 
                     parse = new ParseObject("Pelada");
                     parse_aux = new ParseObject("Pelada");
-                    int contador = 1;
+                    int contador = 1, excluir = 0;
+
+                    List<Integer> list_int = null;
 
                     //Marcando no mapa todas as peladas criadas
                     for (int i = 0; i < list.size(); i++) {
@@ -336,15 +354,29 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
                         LatLng pelada_nova = new LatLng(parse.getDouble("latitude"), parse.getDouble("longitude"));
 
                         contador = 1;
-                        for(int j = i+1; j < list.size(); j++){
 
-                            parse_aux = list.get(j);
+                        if(list_int != null) {
 
-                            if(parse_aux.getDouble("latitude") == pelada_nova.latitude &&
-                                    parse_aux.getDouble("longitude") == pelada_nova.longitude){
+                            for (int j = i + 1; j < list.size(); j++) {
 
-                                contador++;
-                                list.remove(j);
+                                parse_aux = list.get(j);
+
+                                excluir = 0;
+                                for (int k = 0; k < list_int.size(); k++) {
+
+                                    if (j == list_int.get(k)) {
+                                        excluir = 1;
+                                        break;
+                                    }
+                                }
+
+                                if (parse_aux.getDouble("latitude") == pelada_nova.latitude &&
+                                        parse_aux.getDouble("longitude") == pelada_nova.longitude &&
+                                        excluir == 0) {
+
+                                    contador++;
+                                    list_int.add(j);
+                                }
                             }
                         }
 
@@ -384,7 +416,54 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
 
                 if(amarelo == 1){       //Ao clicar no icone de pelada
 
-                    //....... Ao clicar no icone de pelada
+                    framelayout2.setVisibility(View.VISIBLE);
+                    LatLng posicao = marker.getPosition();
+
+
+
+                    ParseQuery<ParseObject> query = ParseQuery.getQuery("Pelada");
+                    query.whereEqualTo("latitude",posicao.latitude);
+                    query.whereEqualTo("longitude",posicao.longitude);
+                    query.findInBackground(new FindCallback<ParseObject>() {
+                        @Override
+                        public void done(List<ParseObject> list, com.parse.ParseException e) {
+                            if (e == null) {
+
+                                parse = new ParseObject("Pelada");
+                                ArrayList<HashMap<String, String>> hms =  new ArrayList<>();
+
+                                for(int i = 0; i < list.size(); i++){
+
+                                    parse = list.get(i);
+
+                                    HashMap<String, String> hm = new HashMap<String, String>();
+
+
+                                    hm.put("texto1", "Nome: "+parse.getString("nome"));
+                                    hm.put("texto2","Participantes: "+parse.getString("participantes"));
+
+
+                                    hms.add(hm);
+
+                                }
+
+                                String[] from = new String[]{"texto1","texto2"};
+
+                                int layout = R.layout.item_list;
+
+                                int[] to = new int[]{R.id.t1,R.id.t2};
+
+                                ListView lv = (ListView) findViewById(R.id.list);
+                                lv.setAdapter(new SimpleAdapter(BuscarActivity.this, hms,layout, from, to));
+
+
+                            } else {
+
+                            }
+                        }
+
+                    });
+
                 }
                 else {              //Ao clicar no icone de quadra
 

@@ -24,7 +24,6 @@ import java.util.Arrays;
 
 public class LoginActivity extends AppCompatActivity {
 
-   // private EditText Login, Senha;
     private LoginButton loginButton;
     private Button loginNormalButton;
     private CallbackManager callbackManager;
@@ -32,6 +31,9 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
         Parse.initialize(new Parse.Configuration.Builder(this)
                 .applicationId("3HZSG8lHjzVfdt4Phg9O2uprnJpv5sBB3NGF0cgh")
                 .clientKey("9oClZtKqkum9f7dhn73Uy1aCWYuZkWtKjOTvrwYM")
@@ -40,6 +42,8 @@ public class LoginActivity extends AppCompatActivity {
 
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_login);
+
+
 
         //muda a cor do STATUS BAR
         if (android.os.Build.VERSION.SDK_INT >= 21) {
@@ -81,10 +85,7 @@ public class LoginActivity extends AppCompatActivity {
         loginNormalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Trecho de codigo teste para o Parse
-//                ParseObject hashTag = new ParseObject("HashTag");
-//                hashTag.put("descricao", "#teste");
-//                hashTag.saveInBackground();
+
                 MenuScreen();
             }
         });
@@ -135,34 +136,3 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 }
-
-
-        //Login = (EditText)findViewById(R.id.editTextLogin);
-       // Senha = (EditText)findViewById(R.id.editTextSenha);
-/**
-
-        Login.setOnTouchListener(new View.OnTouchListener() {               // Apaga o texto "Login" padrão do edit text
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-
-                    Login.setText("");
-                }
-                return false;
-            }
-        });
-
-        Senha.setOnTouchListener(new View.OnTouchListener() {              // Apaga o texto "Senha" padrão do edit text
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-
-                    Login.setText("");
-                }
-                return false;
-            }
-        });
-
-**/
