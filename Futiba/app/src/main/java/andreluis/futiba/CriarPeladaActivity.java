@@ -137,7 +137,7 @@ public class CriarPeladaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //zoeira.setImageResource(R.drawable.zoeiraa);  --TODO !!!
+                zoeira.setImageResource(R.drawable.zoeiraa);
                 casual.setImageResource(R.drawable.casual);
                 competitivo.setImageResource(R.drawable.competitivo);
                 tipo_da_pelada = "zoeira";

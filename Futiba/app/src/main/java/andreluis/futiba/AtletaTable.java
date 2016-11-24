@@ -5,21 +5,21 @@ package andreluis.futiba;
  */
 public class AtletaTable {
     private static AtletaTable instance = null;
-    private int id;
+    private int id, gente_boa, bom_de_bola;
     private String nome_completo;
     private String username;
     private String email;
     private boolean status;
     private String data_nascimento;
     private String senha;
-    private boolean gente_boa, bom_de_bola, joga_gol;
+    private boolean joga_gol;
     private String filosofia;
     private String posicao_futsal;
     private String posicao_campo;
 
     protected AtletaTable(int id, String nome_completo, String username, String email,
-                          boolean status, boolean gente_boa,
-                          boolean bom_de_bola, boolean joga_gol, String filosofia,
+                          boolean status, int gente_boa,
+                          int bom_de_bola, boolean joga_gol, String filosofia,
                           String posicao_futsal, String posicao_campo, String data_nascimento,
                           String senha) {
 
@@ -39,14 +39,14 @@ public class AtletaTable {
 
     }
     public static AtletaTable getInstance(int id, String nome_completo, String username, String email,
-                                          boolean status, boolean gente_boa,
-                                          boolean bom_de_bola, boolean joga_gol, String filosofia,
+                                          boolean status, int gente_boa,
+                                          int bom_de_bola, boolean joga_gol, String filosofia,
                                           String posicao_futsal, String posicao_campo, String data_nascimento,
                                           String senha) {
         if(instance == null) {
             instance = new AtletaTable(id, nome_completo, username, email, status, gente_boa,
-                                       bom_de_bola, joga_gol, filosofia, posicao_futsal,
-                                       posicao_campo, data_nascimento, senha);
+                    bom_de_bola, joga_gol, filosofia, posicao_futsal,
+                    posicao_campo, data_nascimento, senha);
         }
         return instance;
     }
@@ -107,21 +107,25 @@ public class AtletaTable {
         this.senha = senha;
     }
 
-    public boolean isGente_boa() {
+    public int isGente_boa() {
         return gente_boa;
     }
 
-    public void setGente_boa(boolean gente_boa) {
+    public void setGente_boa(int gente_boa) {
         this.gente_boa = gente_boa;
     }
 
-    public boolean isBom_de_bola() {
+    public void addGente_boa() {this.gente_boa++; }
+
+    public int isBom_de_bola() {
         return bom_de_bola;
     }
 
-    public void setBom_de_bola(boolean bom_de_bola) {
+    public void setBom_de_bola(int bom_de_bola) {
         this.bom_de_bola = bom_de_bola;
     }
+
+    public void addBom_de_bola() { this.bom_de_bola++; }
 
     public boolean isJoga_gol() {
         return joga_gol;

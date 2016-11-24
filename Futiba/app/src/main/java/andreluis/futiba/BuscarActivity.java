@@ -36,7 +36,7 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
     private int amarelo = 1;
     private List<ArenaTable> atlist;
     private ArenaTable at;
-    private ParseObject parse;
+    private ParseObject parse, parse_aux;
     private FrameLayout framelayout;
 
 
@@ -71,7 +71,13 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
                 fromResource(R.drawable.footballfield); //Imagem que marca as quadras
 
         final BitmapDescriptor icon_peladas = BitmapDescriptorFactory.
+                fromResource(R.drawable.uma); //Imagem que marca as peladas
+
+        final BitmapDescriptor icon_peladas_duas = BitmapDescriptorFactory.
                 fromResource(R.drawable.pel); //Imagem que marca as peladas
+
+        final BitmapDescriptor icon_peladas_tres = BitmapDescriptorFactory.
+                fromResource(R.drawable.tres); //Imagem que marca as peladas
 
 
 
@@ -130,6 +136,8 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
                         if (e == null) {
 
                             parse = new ParseObject("Pelada");
+                            parse_aux = new ParseObject("Pelada");
+                            int contador = 1;
 
                             //Marcando no mapa todas as peladas criadas
                             for (int i = 0; i < list.size(); i++) {
@@ -137,13 +145,38 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
                                 parse = list.get(i);
 
                                 LatLng pelada_nova = new LatLng(parse.getDouble("latitude"), parse.getDouble("longitude"));
-                                mMap.addMarker(new MarkerOptions().position(pelada_nova)
-                                        .icon(icon_peladas));
+
+                                contador = 1;
+                                for(int j = i+1; j < list.size(); j++){
+
+                                    parse_aux = list.get(j);
+
+                                    if(parse_aux.getDouble("latitude") == pelada_nova.latitude &&
+                                       parse_aux.getDouble("longitude") == pelada_nova.longitude){
+
+                                        contador++;
+                                        list.remove(j);
+                                    }
+                                }
+
+                                if(contador == 1) {
+
+                                    mMap.addMarker(new MarkerOptions().position(pelada_nova)
+                                            .icon(icon_peladas));
+                                }
+                                else if(contador == 2){
+
+                                    mMap.addMarker(new MarkerOptions().position(pelada_nova)
+                                            .icon(icon_peladas_duas));
+                                }
+                                else if(contador >= 3){
+
+                                    mMap.addMarker(new MarkerOptions().position(pelada_nova)
+                                            .icon(icon_peladas_tres));
+                                }
+
                             }
-                        } else {
-
-
-                        }
+                        } else {}
                     }
 
                 });
@@ -275,7 +308,13 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
         /**********Banco de Dados das Peladas**************************************************/
 
         final BitmapDescriptor icon_peladas = BitmapDescriptorFactory.
+                fromResource(R.drawable.uma); //Imagem que marca as peladas
+
+        final BitmapDescriptor icon_peladas_duas = BitmapDescriptorFactory.
                 fromResource(R.drawable.pel); //Imagem que marca as peladas
+
+        final BitmapDescriptor icon_peladas_tres = BitmapDescriptorFactory.
+                fromResource(R.drawable.tres); //Imagem que marca as peladas
 
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Pelada");
@@ -286,21 +325,47 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
                 if (e == null) {
 
                     parse = new ParseObject("Pelada");
+                    parse_aux = new ParseObject("Pelada");
+                    int contador = 1;
 
                     //Marcando no mapa todas as peladas criadas
-                    for(int i = 0; i < list.size(); i++) {
+                    for (int i = 0; i < list.size(); i++) {
 
                         parse = list.get(i);
 
                         LatLng pelada_nova = new LatLng(parse.getDouble("latitude"), parse.getDouble("longitude"));
-                        mMap.addMarker(new MarkerOptions().position(pelada_nova)
-                                .icon(icon_peladas));
+
+                        contador = 1;
+                        for(int j = i+1; j < list.size(); j++){
+
+                            parse_aux = list.get(j);
+
+                            if(parse_aux.getDouble("latitude") == pelada_nova.latitude &&
+                                    parse_aux.getDouble("longitude") == pelada_nova.longitude){
+
+                                contador++;
+                                list.remove(j);
+                            }
+                        }
+
+                        if(contador == 1) {
+
+                            mMap.addMarker(new MarkerOptions().position(pelada_nova)
+                                    .icon(icon_peladas));
+                        }
+                        else if(contador == 2){
+
+                            mMap.addMarker(new MarkerOptions().position(pelada_nova)
+                                    .icon(icon_peladas_duas));
+                        }
+                        else if(contador >= 3){
+
+                            mMap.addMarker(new MarkerOptions().position(pelada_nova)
+                                    .icon(icon_peladas_tres));
+                        }
+
                     }
-                }
-                else {
-
-
-                }
+                } else {}
             }
 
         });
@@ -324,6 +389,31 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
                 else {              //Ao clicar no icone de quadra
 
                     framelayout.setVisibility(View.VISIBLE);
+                    LatLng posicao = marker.getPosition();
+
+
+
+                    ParseQuery<ParseObject> query = ParseQuery.getQuery("Arena");
+                    query.whereEqualTo("latitude",posicao.latitude);
+                    query.whereEqualTo("longitude",posicao.longitude);
+                    query.findInBackground(new FindCallback<ParseObject>() {
+                        @Override
+                        public void done(List<ParseObject> list, com.parse.ParseException e) {
+                            if (e == null) {
+
+                                parse = new ParseObject("Arena");
+                                parse = list.get(0);
+
+
+
+                            } else {
+
+                            }
+                        }
+
+                    });
+
+
                 }
 
                 return true;
@@ -365,6 +455,5 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
         /**************************************************************/
 
     }
-
 
 }

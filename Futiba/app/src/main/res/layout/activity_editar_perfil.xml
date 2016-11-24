@@ -27,7 +27,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/medalha2"
+        android:src="@drawable/madelhagentboa"
         android:id="@+id/medalha2"
         android:alpha="0.5"
         android:layout_alignBottom="@+id/medalha1"
@@ -79,7 +79,6 @@
         android:id="@+id/bomdBola"
         android:textColor="#ffffff"
         android:layout_marginTop="11dp"
-        android:layout_alignTop="@+id/imageView3"
         android:layout_toEndOf="@+id/posicaoPreferida"
         android:layout_marginStart="17dp" />
 
@@ -115,18 +114,25 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="17dp" />
 
-    <ToggleButton
-        android:text="ToggleButton"
-        android:layout_width="wrap_content"
-        android:layout_height="32dp"
-        android:id="@+id/posicao"
-        android:textOn="Ataque"
-        android:textOff="Defesa"
-        android:textColor="#4db6ac"
-        android:background="#ffffff"
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/medalhabomdbola"
+        android:alpha="0.5"
+        android:layout_marginTop="26dp"
+        android:id="@+id/medalha1"
+        android:layout_alignTop="@+id/image"
+        android:layout_toStartOf="@+id/filosofiaFixo" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerPosicao"
         android:layout_above="@+id/jogaGol"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginLeft="130dp"
+        android:layout_marginRight="110dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="19dp" />
 
     <TextView
         android:text="Posição preferida"
@@ -135,18 +141,8 @@
         android:id="@+id/posicaoPreferida"
         android:textSize="18sp"
         android:textColor="#ffffff"
-        android:layout_marginBottom="19dp"
-        android:layout_above="@+id/posicao"
-        android:layout_centerHorizontal="true" />
-
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:srcCompat="@drawable/medalha4"
-        android:alpha="0.5"
-        android:layout_marginTop="26dp"
-        android:id="@+id/medalha1"
-        android:layout_alignTop="@+id/image"
-        android:layout_toStartOf="@+id/filosofiaFixo" />
+        android:layout_marginBottom="18dp"
+        android:layout_above="@+id/spinnerPosicao"
+        android:layout_toEndOf="@+id/medalha1" />
 
 </RelativeLayout>

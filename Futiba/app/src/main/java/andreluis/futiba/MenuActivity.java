@@ -252,6 +252,7 @@ public class MenuActivity extends Activity {
         startActivity(editarPerfilScreen);
     }
 
+
     @Override
     public void onResume(){     //metodo chamado primeiro sempre que a activity eh pausada
         super.onResume();       // e depois volta a ter atividade (botao de voltar da tela)
@@ -265,6 +266,7 @@ public class MenuActivity extends Activity {
         /**************************************************************/
 
     }
+
 
 
 }

@@ -6,18 +6,24 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.facebook.Profile;
 import com.facebook.login.widget.ProfilePictureView;
+import com.parse.ParseObject;
 
 public class PerfilActivity extends AppCompatActivity {
 
     private int genteBoaMedals;
     private int bomdBolaMedals;
     private static boolean jogaGol;
+    private String posicao;
     private String filosofia;
     private String userId;
+
+    TextView intMedalhasGB;
+    TextView intMedalhasBB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +38,12 @@ public class PerfilActivity extends AppCompatActivity {
             window.setStatusBarColor(this.getResources().getColor(R.color.green));
         }
 
+
+        intMedalhasGB = (TextView) findViewById(R.id.intMedalhasGB);
+        intMedalhasBB = (TextView) findViewById(R.id.intMedalhasBB);
+
+        //criar objeto parse atleta.
+        ParseObject atleta = new ParseObject("Atleta");
 
         /*******Pega a foto de perfil do usuario***************************/
 
@@ -67,10 +79,15 @@ public class PerfilActivity extends AppCompatActivity {
         genteBoaMedals++;
     }
 
+    public void setGenteBoaMedals(int medals) { genteBoaMedals = medals; }
+
     public void addbomdBolaMedals() {
         bomdBolaMedals++;
     }
 
+    public void setBomdBolaMedals(int medals) { bomdBolaMedals = medals; }
+
+    public void setPosicao (String posicao) {this.posicao = posicao; }
 
     //getters:
     public int getBomdBolaMedals() {
@@ -88,5 +105,7 @@ public class PerfilActivity extends AppCompatActivity {
     public String getFilosofia() {
         return filosofia;
     }
+
+    public String getPosicao () { return posicao; }
 
 }

@@ -20,4 +20,10 @@
         <item>@drawable/agenda</item>
     </array>
 
+    <string-array name="posicoesFut">
+        <item>Ataque</item>
+        <item>Volante</item>
+        <item>Defesa</item>
+    </string-array>
+
 </resources>
