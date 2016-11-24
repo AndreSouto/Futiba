@@ -36,7 +36,7 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
     private GoogleMap mMap;
     private Button homeButton, peladaButton, quadraButton, addPeladaButton;
     private ImageButton i_pesquisa, i_filtro, i_lista;
-    private ImageView i_pelada_quadra;
+    private ImageView i_pelada_quadra, mapa_de_peladas;
     private int amarelo = 1;
     private List<ArenaTable> atlist;
     private ArenaTable at;
@@ -70,6 +70,7 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
 
 
 
+        mapa_de_peladas = (ImageView) findViewById(R.id.mp);
 
         final BitmapDescriptor icon = BitmapDescriptorFactory.
                 fromResource(R.drawable.footballfield); //Imagem que marca as quadras
@@ -417,9 +418,10 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
                 if(amarelo == 1){       //Ao clicar no icone de pelada
 
                     framelayout2.setVisibility(View.VISIBLE);
-                    LatLng posicao = marker.getPosition();
+                    LatLng posicao = marker.getPosition();  //Pega a posicao do touch
 
 
+                    /****************List View e mudanca de icones*****************************************/
 
                     ParseQuery<ParseObject> query = ParseQuery.getQuery("Pelada");
                     query.whereEqualTo("latitude",posicao.latitude);
@@ -431,6 +433,7 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
 
                                 parse = new ParseObject("Pelada");
                                 ArrayList<HashMap<String, String>> hms =  new ArrayList<>();
+                                int qt_peladas = 0;
 
                                 for(int i = 0; i < list.size(); i++){
 
@@ -440,26 +443,43 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
 
 
                                     hm.put("texto1", "Nome: "+parse.getString("nome"));
-                                    hm.put("texto2","Participantes: "+parse.getString("participantes"));
+                                    hm.put("texto2", "Participantes: "+parse.getString("participantes"));
+                                    hm.put("texto3", "Início: "+parse.getString("hoario_inicio"));
+                                    hm.put("texto4", "Fim: "+parse.getString("horario_fim"));
 
 
                                     hms.add(hm);
+                                    qt_peladas++;
 
                                 }
 
-                                String[] from = new String[]{"texto1","texto2"};
+                                if(qt_peladas == 1){
+
+                                    mapa_de_peladas.setImageResource(R.drawable.mapapeladas1);
+                                }
+                                else if(qt_peladas == 2){
+
+                                    mapa_de_peladas.setImageResource(R.drawable.mapapeladas);
+                                }
+                                else{
+
+                                    mapa_de_peladas.setImageResource(R.drawable.mapapeladas3);
+                                }
+
+
+                                String[] from = new String[]{"texto1","texto2","texto3","texto4"};
 
                                 int layout = R.layout.item_list;
 
-                                int[] to = new int[]{R.id.t1,R.id.t2};
+                                int[] to = new int[]{R.id.t1,R.id.t2,R.id.t3,R.id.t4};
 
                                 ListView lv = (ListView) findViewById(R.id.list);
                                 lv.setAdapter(new SimpleAdapter(BuscarActivity.this, hms,layout, from, to));
 
 
-                            } else {
+                    /******************************************************************************************/
 
-                            }
+                            } else {}
                         }
 
                     });
