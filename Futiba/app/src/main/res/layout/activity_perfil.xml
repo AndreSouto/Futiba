@@ -130,7 +130,7 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:text="TextView"
+        android:text=""
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textPosicao"
@@ -159,7 +159,7 @@
         android:layout_alignStart="@+id/filosofiaFixo" />
 
     <TextView
-        android:text="TextView"
+        android:text=""
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textJogaGol"
@@ -169,7 +169,7 @@
         android:layout_alignStart="@+id/textPosicao" />
 
     <TextView
-        android:text="TextView"
+        android:text=""
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textFilosofia"

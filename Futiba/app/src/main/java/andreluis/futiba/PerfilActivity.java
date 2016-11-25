@@ -27,7 +27,7 @@ public class PerfilActivity extends AppCompatActivity {
     private String userId;
     private ParseObject atleta;
 
-    TextView intMedalhasGB;
+    TextView intMedalhasGB, textFilosofia, textJogaGol, textPosicao;
     TextView intMedalhasBB;
 
     @Override
@@ -47,20 +47,34 @@ public class PerfilActivity extends AppCompatActivity {
         intMedalhasGB = (TextView) findViewById(R.id.intMedalhasGB);
         intMedalhasBB = (TextView) findViewById(R.id.intMedalhasBB);
 
+
+        textPosicao = (TextView) findViewById(R.id.textPosicao);
+        textJogaGol = (TextView) findViewById(R.id.textJogaGol);
+        textFilosofia = (TextView) findViewById(R.id.textFilosofia);
+
+
         //pega o objeto do parse
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("atleta");
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Atleta");
         query.whereEqualTo("nome_completo", "Andre Luis");
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> list, ParseException e) {
                 if (e == null) {
 
-                    atleta = new ParseObject("atleta");
+                    atleta = new ParseObject("Atleta");
+                    atleta = list.get(0);
 
                     setGenteBoaMedals(atleta.getInt("gente_boa"));
                     setBomdBolaMedals(atleta.getInt("bom_de_bola"));
+
                     setJogaGol(atleta.getBoolean("joga_gol"));
+                    textJogaGol.setText(jogaGol());
+
                     setPosicao(atleta.getString("posicao_campo"));
+                    textPosicao.setText(getPosicao());
+
                     setFilosofia(atleta.getString("filosofia"));
+                    textFilosofia.setText(getFilosofia());
+
                     String ID = atleta.getObjectId();
 
                 } else {
@@ -88,13 +102,6 @@ public class PerfilActivity extends AppCompatActivity {
 
         intMedalhasBB.setText(String.valueOf(getBomdBolaMedals()));
         intMedalhasGB.setText(String.valueOf(getGenteBoaMedals()));
-
-        TextView textPosicao = (TextView) findViewById(R.id.textPosicao);
-        textPosicao.setText(getPosicao());
-        TextView textJogaGol = (TextView) findViewById(R.id.textJogaGol);
-        textJogaGol.setText(jogaGol());
-        TextView textFilosofia = (TextView) findViewById(R.id.textFilosofia);
-        textFilosofia.setText(getFilosofia());
 
     }
 
