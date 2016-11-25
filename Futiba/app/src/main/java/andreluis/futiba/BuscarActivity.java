@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -36,12 +37,13 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
     private GoogleMap mMap;
     private Button homeButton, peladaButton, quadraButton, addPeladaButton;
     private ImageButton i_pesquisa, i_filtro, i_lista;
-    private ImageView i_pelada_quadra, mapa_de_peladas;
+    private ImageView i_pelada_quadra, mapa_de_peladas, banheiro_icon, luz_icon, gratis_icon, bom_icon, agua_icon;
     private int amarelo = 1;
     private List<ArenaTable> atlist;
     private ArenaTable at;
     private ParseObject parse, parse_aux;
     private FrameLayout framelayout, framelayout2;
+    private TextView namefromparse, typefromparse;
 
 
     @Override
@@ -71,6 +73,15 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
 
 
         mapa_de_peladas = (ImageView) findViewById(R.id.mp);
+        banheiro_icon = (ImageView) findViewById(R.id.banheiro1);
+        gratis_icon = (ImageView) findViewById(R.id.gratis1);
+        luz_icon = (ImageView) findViewById(R.id.luz1);
+        bom_icon = (ImageView) findViewById(R.id.bom1);
+        agua_icon = (ImageView) findViewById(R.id.agua1);
+        namefromparse = (TextView) findViewById(R.id.nome1);
+        typefromparse = (TextView) findViewById(R.id.tipo1);
+
+
 
         final BitmapDescriptor icon = BitmapDescriptorFactory.
                 fromResource(R.drawable.footballfield); //Imagem que marca as quadras
@@ -343,9 +354,7 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
 
                     parse = new ParseObject("Pelada");
                     parse_aux = new ParseObject("Pelada");
-                    int contador = 1, excluir = 0;
-
-                    List<Integer> list_int = null;
+                    int contador = 1;
 
                     //Marcando no mapa todas as peladas criadas
                     for (int i = 0; i < list.size(); i++) {
@@ -355,29 +364,15 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
                         LatLng pelada_nova = new LatLng(parse.getDouble("latitude"), parse.getDouble("longitude"));
 
                         contador = 1;
+                        for(int j = i+1; j < list.size(); j++){
 
-                        if(list_int != null) {
+                            parse_aux = list.get(j);
 
-                            for (int j = i + 1; j < list.size(); j++) {
+                            if(parse_aux.getDouble("latitude") == pelada_nova.latitude &&
+                                    parse_aux.getDouble("longitude") == pelada_nova.longitude){
 
-                                parse_aux = list.get(j);
-
-                                excluir = 0;
-                                for (int k = 0; k < list_int.size(); k++) {
-
-                                    if (j == list_int.get(k)) {
-                                        excluir = 1;
-                                        break;
-                                    }
-                                }
-
-                                if (parse_aux.getDouble("latitude") == pelada_nova.latitude &&
-                                        parse_aux.getDouble("longitude") == pelada_nova.longitude &&
-                                        excluir == 0) {
-
-                                    contador++;
-                                    list_int.add(j);
-                                }
+                                contador++;
+                                list.remove(j);
                             }
                         }
 
@@ -500,14 +495,39 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
                         public void done(List<ParseObject> list, com.parse.ParseException e) {
                             if (e == null) {
 
+
                                 parse = new ParseObject("Arena");
                                 parse = list.get(0);
 
 
+                                namefromparse.setText(parse.getString("nome"));
+                                typefromparse.setText(parse.getString("tipo"));
 
-                            } else {
 
-                            }
+                                if(parse.getBoolean("agua_perto") == true){
+
+                                    agua_icon.setImageResource(R.drawable.aguacv);
+                                }
+                                if(parse.getBoolean("banheiro_perto") == true){
+
+                                    banheiro_icon.setImageResource(R.drawable.banheiropv);
+                                }
+                                if(parse.getBoolean("luz_perto") == true){
+
+                                    luz_icon.setImageResource(R.drawable.luzcv);
+                                }
+                                if(parse.getBoolean("quadra_paga") == true){
+
+                                    gratis_icon.setImageResource(R.drawable.gratisv);
+                                }
+                                if(parse.getInt("nota") == 2){
+
+                                    bom_icon.setImageResource(R.drawable.bomcv);
+                                }
+
+
+
+                            } else {}
                         }
 
                     });

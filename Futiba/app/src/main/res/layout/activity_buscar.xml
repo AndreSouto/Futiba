@@ -136,8 +136,81 @@
             android:layout_height="350dp"
             android:layout_marginLeft="18dp"
             android:layout_marginTop="100dp"
+            android:src="@drawable/mapaquadras2"
             android:visibility="visible"
             />
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="150dp"
+            android:id="@+id/nome1"
+            android:textColor="#E65302"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textAllCaps="true"
+            android:layout_marginLeft="30dp"
+            android:background="#FFFFFF"/>
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="180dp"
+            android:id="@+id/tipo1"
+            android:textStyle="italic"
+            android:textColor="#E65302"
+            android:layout_marginLeft="30dp"
+            android:background="#FFFFFF"/>
+
+        <ImageView
+            android:layout_width="170dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="230dp"
+            android:layout_marginLeft="30dp"
+            android:id="@+id/luz1"
+            android:src="@drawable/luzc"
+            android:background="#FFFFFF"
+            android:scaleType="centerCrop"/>
+
+        <ImageView
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="280dp"
+            android:layout_marginLeft="30dp"
+            android:id="@+id/banheiro1"
+            android:src="@drawable/banheirop"
+            android:background="#FFFFFF"
+            android:scaleType="centerCrop"/>
+
+        <ImageView
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="340dp"
+            android:layout_marginLeft="30dp"
+            android:id="@+id/agua1"
+            android:src="@drawable/aguac"
+            android:background="#FFFFFF"
+            android:scaleType="centerCrop"/>
+
+        <ImageView
+            android:layout_width="146dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="230dp"
+            android:layout_marginLeft="220dp"
+            android:id="@+id/bom1"
+            android:src="@drawable/bomc"
+            android:background="#FFFFFF"
+            android:scaleType="centerCrop"/>
+
+        <ImageView
+            android:layout_width="146dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="280dp"
+            android:layout_marginLeft="220dp"
+            android:id="@+id/gratis1"
+            android:src="@drawable/gratis"
+            android:background="#FFFFFF"
+            android:scaleType="centerCrop"/>
 
     </FrameLayout>
 
