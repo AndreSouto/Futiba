@@ -1,28 +1,37 @@
 package andreluis.futiba;
 
+import android.content.res.TypedArray;
+
 /**
  * Created by andreluis on 07/11/16.
  */
 public class NavDrawerItem {
 
+    private TypedArray array;
     private String title;
     private int icon;
     private String count = "0";
-    // boolean to set visiblity of the counter
+    // boolean to set visibility of the counter
     private boolean isCounterVisible = false;
 
-    public NavDrawerItem(){}
+    //construtor padrao
+    //public NavDrawerItem(){}
 
-    public NavDrawerItem(String title, int icon){
-        this.title = title;
+    public NavDrawerItem(int icon){
+        //this.title = title;
         this.icon = icon;
+        //this.array = array;
     }
 
-    public NavDrawerItem(String title, int icon, boolean isCounterVisible, String count){
-        this.title = title;
-        this.icon = icon;
-        this.isCounterVisible = isCounterVisible;
-        this.count = count;
+    //  public NavDrawerItem(String title, boolean isCounterVisible, String count){
+    //      this.title = title;
+    //     //this.icon = icon;
+    //      this.isCounterVisible = isCounterVisible;
+    //      this.count = count;
+    //  }
+
+    public TypedArray getArray() {
+        return this.array;
     }
 
     public String getTitle(){

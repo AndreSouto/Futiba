@@ -25,8 +25,7 @@ public class MenuActivity extends Activity {
     private ListView mDrawerList;
 
     // slide menu items
-    private String[] navMenuTitles;
-    private TypedArray navMenuIcons;
+    private TypedArray navMenuIconsAvisos, navMenuIconsSuasPeladas, navMenuIconsDescobertas;
 
     private ArrayList<NavDrawerItem> navDrawerItems;
     private NavDrawerListAdapter adapter;
@@ -50,10 +49,15 @@ public class MenuActivity extends Activity {
         /********************Barra de menu***********************************************************************/
 
         // load slide menu items
-        navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
+        // navMenuTitlesAvisos = getResources().getStringArray(R.array.nav_drawer_items_avisos);
+        // navMenuTitlesDescobertas = getResources().getStringArray(R.array.nav_drawer_items_descobertas);
+        // navMenuTitlesSuasPeladas = getResources().getStringArray(R.array.nav_drawer_items_suaspeladas);
 
         // nav drawer icons from resources
-        navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
+        //navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
+        navMenuIconsAvisos = getResources().obtainTypedArray(R.array.nav_drawer_icons_avisos);
+        navMenuIconsDescobertas = getResources().obtainTypedArray(R.array.nav_drawer_icons_descobertas);
+        navMenuIconsSuasPeladas = getResources().obtainTypedArray(R.array.nav_drawer_icons_suaspeladas);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -93,17 +97,17 @@ public class MenuActivity extends Activity {
 
                 // adding nav drawer items to array
                 // Home
-                navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
+                navDrawerItems.add(new NavDrawerItem(navMenuIconsAvisos.getResourceId(0, -1)));
                 // Find People
-                navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(0, -1)));
+                navDrawerItems.add(new NavDrawerItem(navMenuIconsAvisos.getResourceId(1, -1)));
                 // Photos
-                navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(0, -1)));
+                navDrawerItems.add(new NavDrawerItem(navMenuIconsAvisos.getResourceId(2, -1)));
                 // Communities, Will add a counter here
-                navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(0, -1), true, "22"));
+                navDrawerItems.add(new NavDrawerItem(navMenuIconsAvisos.getResourceId(3, -1)));
                 // Pages
-                navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(0, -1)));
+                //navDrawerItems.add(new NavDrawerItem(navMenuIconsAvisos.getResourceId(4, -1)));
                 // What's hot, We  will add a counter here
-                navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(0, -1), true, "50+"));
+               // navDrawerItems.add(new NavDrawerItem(navMenuIconsAvisos.getResourceId(5, -1)));
 
 
                 // setting the nav drawer list adapter
@@ -132,17 +136,17 @@ public class MenuActivity extends Activity {
 
                 // adding nav drawer items to array
                 // Home
-                navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
+                navDrawerItems.add(new NavDrawerItem(navMenuIconsDescobertas.getResourceId(0,-1)));
                 // Find People
-                navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(0, -1)));
+                navDrawerItems.add(new NavDrawerItem(navMenuIconsDescobertas.getResourceId(1,-1)));
                 // Photos
-                navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(0, -1)));
+                navDrawerItems.add(new NavDrawerItem(navMenuIconsDescobertas.getResourceId(2,-1)));
                 // Communities, Will add a counter here
-                navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(0, -1), true, "22"));
+                navDrawerItems.add(new NavDrawerItem(navMenuIconsDescobertas.getResourceId(3,-1)));
                 // Pages
-                navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(0, -1)));
+               // navDrawerItems.add(new NavDrawerItem(navMenuIconsDescobertas.getResourceId(4,-1)));
                 // What's hot, We  will add a counter here
-                navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(0, -1), true, "50+"));
+                //navDrawerItems.add(new NavDrawerItem(navMenuIconsDescobertas.getResourceId(5,-1)));
 
 
                 // setting the nav drawer list adapter
@@ -171,17 +175,17 @@ public class MenuActivity extends Activity {
 
                 // adding nav drawer items to array
                 // Home
-                navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
+                navDrawerItems.add(new NavDrawerItem(navMenuIconsSuasPeladas.getResourceId(0,-1)));
                 // Find People
-                navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(0, -1)));
+                navDrawerItems.add(new NavDrawerItem(navMenuIconsSuasPeladas.getResourceId(1,-1)));
                 // Photos
-                navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(0, -1)));
+                navDrawerItems.add(new NavDrawerItem(navMenuIconsSuasPeladas.getResourceId(2,-1)));
                 // Communities, Will add a counter here
-                navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(0, -1), true, "22"));
+                navDrawerItems.add(new NavDrawerItem(navMenuIconsSuasPeladas.getResourceId(3,-1)));
                 // Pages
-                navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(0, -1)));
+               // navDrawerItems.add(new NavDrawerItem(navMenuIconsSuasPeladas.getResourceId(4,-1)));
                 // What's hot, We  will add a counter here
-                navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(0, -1), true, "50+"));
+                //navDrawerItems.add(new NavDrawerItem(navMenuIconsSuasPeladas.getResourceId(5,-1)));
 
 
                 // setting the nav drawer list adapter
@@ -258,6 +262,7 @@ public class MenuActivity extends Activity {
         super.onResume();       // e depois volta a ter atividade (botao de voltar da tela)
 
         /*************Escondendo status bar****************************/
+
         View decorView = getWindow().getDecorView();
         // Hide the status bar.
         int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;

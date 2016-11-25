@@ -7,11 +7,15 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 
 import com.facebook.Profile;
 import com.facebook.login.widget.ProfilePictureView;
+import com.parse.FindCallback;
+import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
+import java.util.List;
 
 public class PerfilActivity extends AppCompatActivity {
 
@@ -21,6 +25,7 @@ public class PerfilActivity extends AppCompatActivity {
     private String posicao;
     private String filosofia;
     private String userId;
+    private ParseObject atleta;
 
     TextView intMedalhasGB;
     TextView intMedalhasBB;
@@ -42,8 +47,26 @@ public class PerfilActivity extends AppCompatActivity {
         intMedalhasGB = (TextView) findViewById(R.id.intMedalhasGB);
         intMedalhasBB = (TextView) findViewById(R.id.intMedalhasBB);
 
-        //criar objeto parse atleta.
-        ParseObject atleta = new ParseObject("Atleta");
+        //pega o objeto do parse
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("atleta");
+        query.whereEqualTo("nome_completo", "Andre Luis");
+        query.findInBackground(new FindCallback<ParseObject>() {
+            public void done(List<ParseObject> list, ParseException e) {
+                if (e == null) {
+
+                    atleta = new ParseObject("atleta");
+
+                    setGenteBoaMedals(atleta.getInt("gente_boa"));
+                    setBomdBolaMedals(atleta.getInt("bom_de_bola"));
+                    setJogaGol(atleta.getBoolean("joga_gol"));
+                    setPosicao(atleta.getString("posicao_campo"));
+                    setFilosofia(atleta.getString("filosofia"));
+                    String ID = atleta.getObjectId();
+
+                } else {
+                }
+            }
+        });
 
         /*******Pega a foto de perfil do usuario***************************/
 
@@ -51,7 +74,7 @@ public class PerfilActivity extends AppCompatActivity {
         if (profile != null) {
             userId = Profile.getCurrentProfile().getId();
             ProfilePictureView profilePictureView;
-            profilePictureView = (ProfilePictureView) findViewById(R.id.image);
+            profilePictureView = (ProfilePictureView) findViewById(R.id.fbImage);
             if(userId != null) {
                 profilePictureView.setProfileId(userId);
             }
@@ -60,9 +83,18 @@ public class PerfilActivity extends AppCompatActivity {
         /******************************************************************/
 
         Switch jogaGolSwitch = (Switch) findViewById(R.id.jogaGolSwitch);
-        ToggleButton butaoPosicao = (ToggleButton) findViewById(R.id.posicao);
+        //ToggleButton butaoPosicao = (ToggleButton) findViewById(R.id.posicao);
         EditText fraseFilosofica = (EditText) findViewById (R.id.filosofia);
 
+        intMedalhasBB.setText(String.valueOf(getBomdBolaMedals()));
+        intMedalhasGB.setText(String.valueOf(getGenteBoaMedals()));
+
+        TextView textPosicao = (TextView) findViewById(R.id.textPosicao);
+        textPosicao.setText(getPosicao());
+        TextView textJogaGol = (TextView) findViewById(R.id.textJogaGol);
+        textJogaGol.setText(jogaGol());
+        TextView textFilosofia = (TextView) findViewById(R.id.textFilosofia);
+        textFilosofia.setText(getFilosofia());
 
     }
 
@@ -100,6 +132,11 @@ public class PerfilActivity extends AppCompatActivity {
 
     public boolean isJogaGol() {
         return jogaGol;
+    }
+
+    public String jogaGol() {
+        if (isJogaGol()) return "SIM";
+        else return "NAO";
     }
 
     public String getFilosofia() {

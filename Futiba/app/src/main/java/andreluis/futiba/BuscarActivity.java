@@ -508,21 +508,41 @@ public class BuscarActivity extends FragmentActivity implements OnMapReadyCallba
 
                                     agua_icon.setImageResource(R.drawable.aguacv);
                                 }
+                                else{
+
+                                    agua_icon.setImageResource(R.drawable.aguac);
+                                }
                                 if(parse.getBoolean("banheiro_perto") == true){
 
                                     banheiro_icon.setImageResource(R.drawable.banheiropv);
+                                }
+                                else{
+
+                                    banheiro_icon.setImageResource(R.drawable.banheirop);
                                 }
                                 if(parse.getBoolean("luz_perto") == true){
 
                                     luz_icon.setImageResource(R.drawable.luzcv);
                                 }
+                                else{
+
+                                    luz_icon.setImageResource(R.drawable.luzc);
+                                }
                                 if(parse.getBoolean("quadra_paga") == true){
 
                                     gratis_icon.setImageResource(R.drawable.gratisv);
                                 }
+                                else{
+
+                                    gratis_icon.setImageResource(R.drawable.gratis);
+                                }
                                 if(parse.getInt("nota") == 2){
 
                                     bom_icon.setImageResource(R.drawable.bomcv);
+                                }
+                                else{
+
+                                    bom_icon.setImageResource(R.drawable.bomc);
                                 }
 
 

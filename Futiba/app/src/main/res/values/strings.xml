@@ -2,22 +2,29 @@
     <string name="app_name">Futiba</string>
     <string name="facebook_app_id">327290910966592</string>
     <string name="title_activity_buscar">Map</string>
-    <string-array name="nav_drawer_items">
-        <item>Home</item>
-        <item>Cardápio</item>
-        <item>Notícias</item>
-        <item>Eventos</item>
-        <item>Locais</item>
-        <item>Anúncios</item>
-    </string-array>
 
-    <array name="nav_drawer_icons">
-        <item>@drawable/agenda</item>
-        <item>@drawable/agenda</item>
-        <item>@drawable/agenda</item>
-        <item>@drawable/agenda</item>
-        <item>@drawable/agenda</item>
-        <item>@drawable/agenda</item>
+    <array name="nav_drawer_icons_avisos">
+        <item>@drawable/texto3</item>
+        <item>@drawable/texto3</item>
+        <item>@drawable/texto1</item>
+        <item>@drawable/texto4</item>
+        
+    </array>
+
+    <array name="nav_drawer_icons_descobertas">
+        <item>@drawable/texto4</item>
+        <item>@drawable/texto3</item>
+        <item>@drawable/texto1</item>
+        <item>@drawable/texto3</item>
+
+    </array>
+
+    <array name="nav_drawer_icons_suaspeladas">
+        <item>@drawable/texto5</item>
+        <item>@drawable/texto6</item>
+        <item>@drawable/texto3</item>
+        <item>@drawable/texto1</item>
+
     </array>
 
     <string-array name="posicoesFut">

@@ -18,38 +18,6 @@
     android:layout_centerInParent="false">
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Usuário"
-        android:id="@+id/NomeUsuario"
-        android:fontFamily="sans-serif"
-        android:textSize="24sp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:text="Joga no Gol"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/jogaGol"
-        android:textSize="18sp"
-        android:layout_above="@+id/jogaGolButao"
-        android:textColor="#ffffff"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="12dp" />
-
-    <TextView
-        android:text="Filosofia de Vida"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/filosofiaFixo"
-        android:textSize="18sp"
-        android:layout_above="@+id/filosofia"
-        android:textColor="#ffffff"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp" />
-
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -62,7 +30,7 @@
         android:layout_toEndOf="@+id/posicaoPreferida" />
 
     <com.facebook.login.widget.ProfilePictureView
-        android:id="@+id/image"
+        android:id="@+id/fbImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginLeft="128dp"
@@ -75,35 +43,9 @@
         android:layout_marginStart="128dp"
         android:layout_marginTop="47dp"
         android:clickable="false"
-        android:color="#4db6ac"/>
+        android:color="#4db6ac"
+        android:id="@+id/fbImageView" />
 
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:textColorHighlight="#999999"
-        android:textColorHint="#999999"
-        android:textColorLink="#999999"
-        android:ems="10"
-        android:id="@+id/filosofia"
-        android:textSize="18sp"
-        android:textColor="#4db6ac"
-        android:background="#ffffff"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="11dp" />
-
-    <TextView
-        android:text="Posição preferida"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/posicaoPreferida"
-        android:textSize="18sp"
-        android:textColor="#ffffff"
-        android:layout_marginBottom="12dp"
-        android:layout_above="@+id/posicao"
-        android:layout_centerHorizontal="true" />
 
     <TextView
         android:text="Bom de Bola"
@@ -126,49 +68,14 @@
         android:layout_alignStart="@+id/medalha1"
         android:layout_marginStart="14dp" />
 
-    <ToggleButton
-        android:text="ToggleButton"
-        android:layout_width="wrap_content"
-        android:layout_height="32dp"
-        android:layout_marginBottom="17dp"
-        android:id="@+id/jogaGolButao"
-        android:textOn="Sim"
-        android:textOff="Não"
-        android:clickable="false"
-        android:textColor="#4db6ac"
-        android:background="#ffffff"
-        android:layout_above="@+id/filosofiaFixo"
-        android:layout_centerHorizontal="true" />
-
-    <ToggleButton
-        android:text="ToggleButton"
-        android:layout_width="wrap_content"
-        android:layout_height="32dp"
-        android:id="@+id/posicao"
-        android:textOn="Ataque"
-        android:textOff="Defesa"
-        android:clickable="false"
-        android:textColor="#4db6ac"
-        android:background="#ffffff"
-        android:layout_above="@+id/jogaGol"
-        android:layout_alignStart="@+id/jogaGolButao"
-        android:layout_marginBottom="13dp" />
-
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/medalha1"
-        android:layout_alignEnd="@+id/genteBoa"
-        android:id="@+id/intMedalhasGB" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/intMedalhasGB"
-        android:layout_alignStart="@+id/bomdBola"
-        android:id="@+id/intMedalhasBB" />
+        android:id="@+id/intMedalhasGB"
+        android:textSize="24sp"
+        android:layout_alignEnd="@+id/medalha1" />
 
     <ImageView
         android:layout_width="100dp"
@@ -176,7 +83,108 @@
         android:src="@drawable/medalhabomdbola"
         android:layout_marginTop="20dp"
         android:id="@+id/medalha1"
-        android:layout_alignTop="@+id/image"
+        android:layout_alignTop="@+id/fbImage"
         android:layout_toStartOf="@+id/filosofiaFixo" />
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="35dp"
+        app:srcCompat="@color/colorPrimary"
+        android:id="@+id/brancoPosicao"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="13dp"
+        android:layout_above="@+id/jogaGol"
+        android:layout_alignStart="@+id/posicaoPreferida" />
+
+    <TextView
+        android:text="Filosofia de Vida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/filosofiaFixo"
+        android:textSize="18sp"
+        android:textColor="#ffffff"
+        android:layout_marginBottom="14dp"
+        android:layout_above="@+id/brancoFilosofia"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Joga no Gol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/jogaGol"
+        android:textSize="18sp"
+        android:textColor="#ffffff"
+        android:layout_marginBottom="10dp"
+        android:layout_above="@+id/brancoJogaGol"
+        android:layout_alignStart="@+id/fbImage" />
+
+    <TextView
+        android:text="Posição preferida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/posicaoPreferida"
+        android:textSize="18sp"
+        android:textColor="#ffffff"
+        android:layout_marginBottom="16dp"
+        android:layout_above="@+id/brancoPosicao"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textPosicao"
+        android:textSize="18sp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignBottom="@+id/brancoPosicao" />
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="35dp"
+        app:srcCompat="@color/colorPrimary"
+        android:id="@+id/brancoFilosofia"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="35dp"
+        app:srcCompat="@color/colorPrimary"
+        android:id="@+id/brancoJogaGol"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="12dp"
+        android:layout_above="@+id/filosofiaFixo"
+        android:layout_alignStart="@+id/filosofiaFixo" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textJogaGol"
+        android:layout_centerHorizontal="true"
+        android:textSize="18sp"
+        android:layout_alignBottom="@+id/brancoJogaGol"
+        android:layout_alignStart="@+id/textPosicao" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textFilosofia"
+        android:layout_centerHorizontal="true"
+        android:textSize="18sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/textJogaGol" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/intMedalhasBB"
+        android:textSize="24sp"
+        android:layout_below="@+id/medalha2"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
